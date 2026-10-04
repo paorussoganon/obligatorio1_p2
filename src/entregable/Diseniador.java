@@ -17,10 +17,10 @@ public class Diseniador {
     private String direccion;
     
     // Constructores
-    public Diseniador(String nombre, String mail, String direccion){
+    public Diseniador(String nombre, String direccion, String mail){
         this.setNombre(nombre);
-        this.setMail(mail);
         this.setDireccion(direccion);
+        this.setMail(mail);
     }
     
     

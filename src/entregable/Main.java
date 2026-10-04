@@ -18,14 +18,21 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        
         
         //System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
-
+        
+        Sistema sistema = new Sistema();
         
         boolean entrar = true;
         int opcion;
+        String nombre;
+        String direccion;
+        String mail;        
+        
         Scanner in = new Scanner(System.in);
+
         
         while(entrar){
             
@@ -45,9 +52,10 @@ public class Main {
             System.out.println("---------");
             System.out.println();
             System.out.println("Ingrese el número de la opción deseada: ");
-            System.out.println();
-
+            
             opcion = in.nextInt();
+            in.nextLine(); // consume el enter sino da un error en la lectura de datos
+            System.out.println();
 
             switch (opcion) {
                 case 0 -> {
@@ -61,7 +69,18 @@ public class Main {
                 
                 case 2 -> {
                     System.out.println("Opcion 2 anda");
-                    registrarDiseniador();
+                    Sistema.registrarDosDiseniadores();
+                    
+                    System.out.println("Ingrese los datos del diseñador: ");
+                    
+                    System.out.println("Nombre: ");
+                    nombre = in.nextLine();
+                    System.out.println("Dirección: ");
+                    direccion = in.nextLine();
+                    System.out.println("Mail: ");
+                    mail = in.nextLine();
+                    
+                    sistema.registrarDiseniador(nombre, direccion, mail);
                 }
                 
                 case 3 -> System.out.println("Opcion 3 anda");
