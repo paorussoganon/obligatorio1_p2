@@ -92,7 +92,7 @@ public class Main {
                 case 6 -> System.out.println("Opcion 6 anda");
                 case 7 -> {
                     System.out.println("Opcion 7 anda");
-                    
+                    sistema.mostrarDiseniadores();
                 }
                 
                 case 8 -> System.out.println("Opcion 8 anda");

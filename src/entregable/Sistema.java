@@ -4,6 +4,7 @@
  */
 package entregable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -13,6 +14,7 @@ public class Sistema {
     
     private ArrayList<Diseniador> listaDiseniadores = new ArrayList<Diseniador>();
     
+    // Metodo: Busca si existe el diseniador con ese nombre
     public boolean existeDiseniador(String nombre){
         // Chequea si el disenador ya esta en la lista o no
         boolean existe = false;
@@ -28,20 +30,30 @@ public class Sistema {
         return existe;
     }
     
+    // Metodo: Registra un diseniador
     public void registrarDiseniador(String nombre, String direccion, String mail){
         Diseniador diseniador = new Diseniador(nombre, direccion, mail);
         listaDiseniadores.add(diseniador);
     }
     
-    public ArrayList<Diseniador> getDiseniadores(){
+    //public ArrayList<Diseniador> getDiseniadores(){
+    //    return listaDiseniadores;
+    //}
+    
+    // Metodo: Ordena la lista de diseniadores en orden alfabético
+    public ArrayList<Diseniador> ordenar(){
+        Collections.sort(listaDiseniadores);
         return listaDiseniadores;
     }
     
+    // Metodo: Muestra la lista de diseniadores ya ordenada
     public void mostrarDiseniadores(){
+        ordenar();
         for (int i = 0; i < listaDiseniadores.size(); i++){
             System.out.println(listaDiseniadores.get(i));
         }
     }
+
     
     
     

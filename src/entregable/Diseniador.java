@@ -8,7 +8,8 @@ package entregable;
  *
  * @author paorg
  */
-public class Diseniador {
+public class Diseniador implements Comparable<Diseniador>{
+    
     
     
     // variables de instancia
@@ -55,6 +56,12 @@ public class Diseniador {
     @Override
     public String toString(){
         return "Diseñador: " + this.getNombre() + ", " + this.getDireccion() + ", " + this.getMail();
+    }
+    
+    // Para reescribir el compare to
+    @Override
+    public int compareTo(Diseniador diseniador2){
+        return this.getNombre().compareToIgnoreCase(diseniador2.getNombre());
     }
     
     
