@@ -38,8 +38,14 @@ public class Sistema {
     }
     
     
+    for (int i = 0; i < listaDiseniadores.size(); i++){
+        System.out.println("Lista de diseñadores: " + listaDiseniadores.get(i));
+    }
     
     
+    
+    
+    /*
     //--------------------------------------------------------------------------
     public static void registrarDosDiseniadores(){
         
@@ -51,7 +57,7 @@ public class Sistema {
         
     }
     //--------------------------------------------------------------------------
-        
+    */
     
     
 }

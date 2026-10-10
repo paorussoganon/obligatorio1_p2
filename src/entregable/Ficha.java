@@ -10,4 +10,8 @@ package entregable;
  */
 public class Ficha {
     
+    
+    
+    
+    
 }
