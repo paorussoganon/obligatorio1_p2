@@ -37,9 +37,10 @@ public class Sistema {
         return listaDiseniadores;
     }
     
-    
-    for (int i = 0; i < listaDiseniadores.size(); i++){
-        System.out.println("Lista de diseñadores: " + listaDiseniadores.get(i));
+    public void mostrarDiseniadores(){
+        for (int i = 0; i < listaDiseniadores.size(); i++){
+            System.out.println(listaDiseniadores.get(i));
+        }
     }
     
     

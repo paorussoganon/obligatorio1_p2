@@ -69,7 +69,9 @@ public class Main {
                 
                 case 2 -> {
                     System.out.println("Opcion 2 anda");
-                    Sistema.registrarDosDiseniadores();
+                    
+                    
+                    // Sistema.registrarDosDiseniadores();
                     
                     System.out.println("Ingrese los datos del diseñador: ");
                     
@@ -80,6 +82,7 @@ public class Main {
                     System.out.println("Mail: ");
                     mail = in.nextLine();
                     
+                    
                     sistema.registrarDiseniador(nombre, direccion, mail);
                 }
                 
@@ -87,7 +90,11 @@ public class Main {
                 case 4 -> System.out.println("Opcion 4 anda");
                 case 5 -> System.out.println("Opcion 5 anda");
                 case 6 -> System.out.println("Opcion 6 anda");
-                case 7 -> System.out.println("Opcion 7 anda");
+                case 7 -> {
+                    System.out.println("Opcion 7 anda");
+                    
+                }
+                
                 case 8 -> System.out.println("Opcion 8 anda");
                 case 9 -> System.out.println("Opcion 9 anda");
                 
