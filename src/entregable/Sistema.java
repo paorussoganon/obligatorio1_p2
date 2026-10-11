@@ -88,15 +88,32 @@ public class Sistema {
         listaFichas.add(ficha);
     }
     
-    // Metodo: Muestra la lista de fichas con sus atributos
+    // Metodo: imprime por pantalla la ficha
+    private void imprimirFicha(String cadena, int ancho) {
+        for (int i = 0; i < ancho; i++) {
+            int inicio = i * ancho;
+            System.out.println(cadena.substring(inicio, inicio + ancho).replace('.', ' '));
+        }
+    }
+    
+    // Metodo: muestra la lista de fichas con sus atributos
     public void mostrarListaFichas(){
         for (int i = 0; i < listaFichas.size(); i++){
-            System.out.println("Ficha: " + listaFichas.get(i).getNombre());
-            System.out.println("Color: " + listaFichas.get(i).getColor());
-            //System.out.println("Tamaño chico: " + listaFichas.get(i).getChico());
+            
+            Ficha ficha = listaFichas.get(i);
+            
+            System.out.println("Ficha: " + ficha.getNombre());
+            System.out.println("Color: " + ficha.getColor());
+            
+            // Imprime la ficha chica
             System.out.println("Tamaño chico: ");
-            Ficha.dibujar(listaFichas.get(i).getChico(), 3);
-            System.out.println("Tamaño grande: " + listaFichas.get(i).getGrande());
+            imprimirFicha(ficha.getChico(), 3);
+            
+            // Imprime la ficha grande
+            System.out.println("Tamaño grande: ");
+            imprimirFicha(ficha.getGrande(), 5);
+        
+        
         }
     }
     

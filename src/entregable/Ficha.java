@@ -76,12 +76,6 @@ public class Ficha {
     }
     */
     
-    private static void dibujar(String diseno, int lado) {
-        for (int fila = 0; fila < lado; fila++) {
-            int inicio = fila * lado;
-            System.out.println(diseno.substring(inicio, inicio + lado).replace('.', ' '));
-        }
-    }
-    
+
 }
 
