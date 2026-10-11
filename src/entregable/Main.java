@@ -27,9 +27,9 @@ public class Main {
         
         boolean entrar = true;
         int opcion;
-        String nombre;
-        String direccion;
-        String mail;        
+
+        
+
         
         Scanner in = new Scanner(System.in);
 
@@ -70,6 +70,9 @@ public class Main {
                 case 2 -> {
                     System.out.println("Opcion 2 anda");
                     
+                    String nombre;
+                    String direccion;
+                    String mail;
                     
                     // Sistema.registrarDosDiseniadores();
                     
@@ -86,17 +89,53 @@ public class Main {
                     sistema.registrarDiseniador(nombre, direccion, mail);
                 }
                 
-                case 3 -> System.out.println("Opcion 3 anda");
+                case 3 -> {
+                    
+                    String nombre;
+                    String color;
+                    String chico;
+                    String grande;
+                    
+                    System.out.println("Opcion 3 anda");
+                    
+                    System.out.println("Ingrese los datos de la ficha: ");
+                    
+                    System.out.println("Nombre de la ficha: ");
+                    nombre = in.nextLine();
+                    System.out.println("Color de la ficha: ");
+                    color = in.nextLine();
+                    System.out.println("Diseño chico (3x3): ");
+                    chico = in.nextLine();
+                    System.out.println("Diseño grande (5x5): ");
+                    grande = in.nextLine();
+                    
+                    sistema.registrarFicha(nombre, color, chico, grande);
+                }
+                
+                
+                    
+                    
                 case 4 -> System.out.println("Opcion 4 anda");
                 case 5 -> System.out.println("Opcion 5 anda");
                 case 6 -> System.out.println("Opcion 6 anda");
                 case 7 -> {
                     System.out.println("Opcion 7 anda");
-                    sistema.mostrarDiseniadores();
+                    sistema.mostrarListaDiseniadores();
                 }
                 
                 case 8 -> System.out.println("Opcion 8 anda");
-                case 9 -> System.out.println("Opcion 9 anda");
+                
+                case 9 -> {
+                    
+                    System.out.println("Opcion 9 anda");
+                    
+                    sistema.mostrarListaFichas();
+                    
+                    
+                    
+                }
+                
+                
                 
                 default -> System.out.println("Opcion inválida, ingrese otro número");
                 

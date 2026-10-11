@@ -12,6 +12,12 @@ import java.util.Collections;
  */
 public class Sistema {
     
+    
+    //--------------------------------------------------------------------------
+    
+    // Para clase Diseniador
+    
+    // Crea una lista de diseniadores
     private ArrayList<Diseniador> listaDiseniadores = new ArrayList<Diseniador>();
     
     // Metodo: Busca si existe el diseniador con ese nombre
@@ -47,16 +53,13 @@ public class Sistema {
     }
     
     // Metodo: Muestra la lista de diseniadores ya ordenada
-    public void mostrarDiseniadores(){
+    public void mostrarListaDiseniadores(){
         ordenar();
         for (int i = 0; i < listaDiseniadores.size(); i++){
             System.out.println(listaDiseniadores.get(i));
         }
     }
 
-    
-    
-    
     
     /*
     //--------------------------------------------------------------------------
@@ -71,6 +74,40 @@ public class Sistema {
     }
     //--------------------------------------------------------------------------
     */
+    
+    //--------------------------------------------------------------------------
+    // Para clase Ficha
+    
+    // Crea una lista de fichas
+    private ArrayList<Ficha> listaFichas = new ArrayList<Ficha>();
+    
+    
+    // Metodo: Registra una ficha
+    public void registrarFicha(String nombre, String color, String chico, String grande){
+        Ficha ficha = new Ficha(nombre, color, chico, grande);
+        listaFichas.add(ficha);
+    }
+    
+    // Metodo: Muestra la lista de fichas con sus atributos
+    public void mostrarListaFichas(){
+        for (int i = 0; i < listaFichas.size(); i++){
+            System.out.println("Ficha: " + listaFichas.get(i).getNombre());
+            System.out.println("Color: " + listaFichas.get(i).getColor());
+            //System.out.println("Tamaño chico: " + listaFichas.get(i).getChico());
+            System.out.println("Tamaño chico: ");
+            Ficha.dibujar(listaFichas.get(i).getChico(), 3);
+            System.out.println("Tamaño grande: " + listaFichas.get(i).getGrande());
+        }
+    }
+    
+    
+
+        
+        
+    }
+    
+    //--------------------------------------------------------------------------
+    
     
     
 }
