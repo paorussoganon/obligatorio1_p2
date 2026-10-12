@@ -88,36 +88,47 @@ public class Sistema {
         listaFichas.add(ficha);
     }
     
-    // Metodo: imprime por pantalla la ficha
-    private void imprimirFicha(String cadena, int ancho) {
-        for (int i = 0; i < ancho; i++) {
-            int inicio = i * ancho;
-            System.out.println(cadena.substring(inicio, inicio + ancho).replace('.', ' '));
-        }
+    public ArrayList<Ficha> getListaFichas() {
+        return new ArrayList<Ficha>(listaFichas);
     }
+    
     
     // Metodo: muestra la lista de fichas con sus atributos
-    public void mostrarListaFichas(){
-        for (int i = 0; i < listaFichas.size(); i++){
-            
-            Ficha ficha = listaFichas.get(i);
-            
-            System.out.println("Ficha: " + ficha.getNombre());
-            System.out.println("Color: " + ficha.getColor());
-            
-            // Imprime la ficha chica
-            System.out.println("Tamaño chico: ");
-            imprimirFicha(ficha.getChico(), 3);
-            
-            // Imprime la ficha grande
-            System.out.println("Tamaño grande: ");
-            imprimirFicha(ficha.getGrande(), 5);
-        
-        
+    //public void mostrarListaFichas(){
+    //    for (int i = 0; i < listaFichas.size(); i++){
+    //        
+    //        Ficha ficha = listaFichas.get(i);
+    //        
+    //        System.out.println("Ficha: " + ficha.getNombre());
+    //        System.out.println("Color: " + ficha.getColor());
+    //        
+    //        // Imprime la ficha chica
+    //        System.out.println("Tamaño chico: ");
+    //        ficha.imprimirFicha(ficha.getChico(), 3);
+    //        
+    //        // Imprime la ficha grande
+    //        System.out.println("Tamaño grande: ");
+    //        ficha.imprimirFicha(ficha.getGrande(), 5);
+    //    
+    //    
+    //    }
+    //}
+    
+    // Metodo: Buscar una ficha por nombre, devuelve null si no existe
+    
+    public Ficha buscarFicha(String nombre) {
+        for (Ficha f : listaFichas) {
+            if (f.getNombre().equals(nombre)) {
+                return f;
+            }
         }
+        return null;
     }
     
-    
+    // Metodo: Indica si ya existe una ficha con ese nombre
+    public boolean existeFicha(String nombre) {
+        return buscarFicha(nombre) != null;
+    }
 
         
         

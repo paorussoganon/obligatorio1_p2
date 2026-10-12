@@ -10,6 +10,11 @@ package entregable;
  */
 public class Ficha {
     
+    // constantes
+    public static final int LADO_CHICO = 3;
+    public static final int LADO_GRANDE = 5;
+    public static final String COLORES = "RABNMVGC";
+    
     // variables de instancia
     private String nombre;
     private String color;
@@ -75,6 +80,31 @@ public class Ficha {
         }
     }
     */
+    
+    // validadores 
+    
+    public static boolean colorValido(String color) {
+    return color.length() == 1 && "RABNMVGC".contains(color);
+    }
+
+    public static boolean chicoValido(String diseno) {
+        return diseno.length() == LADO_CHICO * LADO_CHICO;
+    }
+
+    public static boolean grandeValido(String diseno) {
+        return diseno.length() == LADO_GRANDE * LADO_GRANDE;
+    }
+    
+    // Metodo: imprime por pantalla la ficha
+    
+    public String imprimirFicha(String cadena, int ancho) {
+        String resultado = "";
+        for (int i = 0; i < ancho; i++) {
+            int inicio = i * ancho;
+            resultado += cadena.substring(inicio, inicio + ancho).replace('.', ' ') + "\n";
+        }
+        return resultado;
+    }
     
 
 }

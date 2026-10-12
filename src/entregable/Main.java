@@ -91,24 +91,57 @@ public class Main {
                 
                 case 3 -> {
                     
-                    String nombre;
-                    String color;
-                    String chico;
-                    String grande;
+                    String nombre = "";
+                    String color = "";
+                    String chico = "";
+                    String grande = "";
+                    boolean check = false;
                     
-                    System.out.println("Opcion 3 anda");
+                    while(!check){
+                        System.out.println("Nombre de la ficha: ");
+                        nombre = in.nextLine(); 
+                        if (nombre.isEmpty() || !nombre.equals(nombre.toUpperCase())) {
+                            System.out.println("El nombre debe estar en mayúscula.");
+                        } else if (sistema.existeFicha(nombre)) {
+                            System.out.println("Ya existe una ficha con ese nombre.");
+                        } else {
+                            check = true;
+                        }
+                    }
                     
-                    System.out.println("Ingrese los datos de la ficha: ");
+                    check = false;
+                    while (!check){
+                        System.out.println("Color de la ficha (R, A, B, N, M, V, G, C): ");
+                        color = in.nextLine();
+                        if (Ficha.colorValido(color)) {
+                            check = true;
+                        } else {
+                            System.out.println("Color inválido.");
+                        }
+                    }
                     
-                    System.out.println("Nombre de la ficha: ");
-                    nombre = in.nextLine();
-                    System.out.println("Color de la ficha: ");
-                    color = in.nextLine();
-                    System.out.println("Diseño chico (3x3): ");
-                    chico = in.nextLine();
-                    System.out.println("Diseño grande (5x5): ");
-                    grande = in.nextLine();
+                    check = false;
+                    while (!check){
+                        System.out.println("Diseño chico (3x3, 9 caracteres): ");
+                        chico = in.nextLine();
+                        if (Ficha.chicoValido(chico)) {
+                            check = true;
+                        } else { 
+                            System.out.println("Debe tener exactamente 9 caracteres.");
+                        }
+                    }
                     
+                    check = false;
+                    while (!check) {
+                        System.out.println("Diseño grande (5x5, 25 caracteres): ");
+                        grande = in.nextLine();
+                        if (Ficha.grandeValido(grande)) {
+                            check = true;
+                        } else {
+                        System.out.println("Debe tener exactamente 25 caracteres.");
+                        }
+                    }
+
                     sistema.registrarFicha(nombre, color, chico, grande);
                 }
                 
@@ -126,13 +159,14 @@ public class Main {
                 case 8 -> System.out.println("Opcion 8 anda");
                 
                 case 9 -> {
-                    
-                    System.out.println("Opcion 9 anda");
-                    
-                    sistema.mostrarListaFichas();
-                    
-                    
-                    
+                    for (Ficha ficha : sistema.getListaFichas()) {
+                        System.out.println("Ficha: " + ficha.getNombre());
+                        System.out.println("Color: " + ficha.getColor());
+                        System.out.println("Tamaño chico: ");
+                        System.out.print(ficha.imprimirFicha(ficha.getChico(), 3));
+                        System.out.println("Tamaño grande: ");
+                        System.out.print(ficha.imprimirFicha(ficha.getGrande(), 5));
+                    }
                 }
                 
                 
