@@ -129,7 +129,18 @@ public class Sistema {
     public boolean existeFicha(String nombre) {
         return buscarFicha(nombre) != null;
     }
-
+    
+    // Pre cargar fichas
+    public void precargarFichas(){
+        registrarFicha("SOL", "M", "\\|/-*-/|\\", "..|...\\|/.--*--./|\\...|..");
+        registrarFicha("CUADRADO", "N", "+-+|.|+-+", "+---+|...||...||...|+---+");
+        registrarFicha("CORAZON", "R", "*.****.*.", "**.************.***...*..");
+        registrarFicha("COPA", "C", "\\./.|./_\\", "\\.../.\\./...|....|.../_\\.");
+        registrarFicha("ARBOL", "V", ".^.^^^.|.", "..^...^^^.^^^^^..|.../.\\.");
+        registrarFicha("GATO", "A", "^.^o.o=^=", "/\\_/\\(o.o).>^<../|\\../.\\.");
+        registrarFicha("DIAMANTE", "G", ".*.*.*.*.", "..*...*.*.*...*.*.*...*..");
+        registrarFicha("VACIA", "B", ".........", ".........................");
+    }
         
         
 }

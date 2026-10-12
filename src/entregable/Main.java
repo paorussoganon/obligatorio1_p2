@@ -24,6 +24,7 @@ public class Main {
         //System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
         
         Sistema sistema = new Sistema();
+        sistema.precargarFichas();
         
         boolean entrar = true;
         int opcion;
