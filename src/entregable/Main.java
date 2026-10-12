@@ -69,24 +69,31 @@ public class Main {
                 }
                 
                 case 2 -> {
-                    System.out.println("Opcion 2 anda");
-                    
-                    String nombre;
+                    String nombre = "";
                     String direccion;
                     String mail;
+                    boolean check = false;
                     
                     // Sistema.registrarDosDiseniadores();
                     
-                    System.out.println("Ingrese los datos del diseñador: ");
-                    
-                    System.out.println("Nombre: ");
-                    nombre = in.nextLine();
+                    System.out.println("Ingrese los datos del diseñador.");
+                    while(!check){
+                        System.out.println("Nombre: ");
+                        nombre = in.nextLine();
+                        if (nombre.isEmpty()){
+                            System.out.println("El nombre no puede estar vacío. "); 
+                        } else if (sistema.existeDiseniador(nombre)) {
+                            System.out.println("Ya existe un diseñador con ese nombre.");
+                        } else {
+                            check = true;
+                        }
+                    }
+
                     System.out.println("Dirección: ");
                     direccion = in.nextLine();
                     System.out.println("Mail: ");
                     mail = in.nextLine();
-                    
-                    
+
                     sistema.registrarDiseniador(nombre, direccion, mail);
                 }
                 
@@ -97,6 +104,8 @@ public class Main {
                     String chico = "";
                     String grande = "";
                     boolean check = false;
+                    
+                    System.out.println("Ingrese los datos de la ficha.");
                     
                     while(!check){
                         System.out.println("Nombre de la ficha: ");
@@ -160,13 +169,13 @@ public class Main {
                 case 8 -> System.out.println("Opcion 8 anda");
                 
                 case 9 -> {
-                    for (Ficha ficha : sistema.getListaFichas()) {
-                        System.out.println("Ficha: " + ficha.getNombre());
-                        System.out.println("Color: " + ficha.getColor());
+                    for (Ficha f : sistema.getListaFichas()) {
+                        System.out.println("Ficha: " + f.getNombre());
+                        System.out.println("Color: " + f.getColor());
                         System.out.println("Tamaño chico: ");
-                        System.out.print(ficha.imprimirFicha(ficha.getChico(), 3));
+                        System.out.print(f.imprimirFicha(f.getChico(), 3));
                         System.out.println("Tamaño grande: ");
-                        System.out.print(ficha.imprimirFicha(ficha.getGrande(), 5));
+                        System.out.print(f.imprimirFicha(f.getGrande(), 5));
                     }
                 }
                 

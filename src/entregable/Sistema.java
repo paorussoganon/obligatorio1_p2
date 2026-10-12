@@ -20,20 +20,19 @@ public class Sistema {
     // Crea una lista de diseniadores
     private ArrayList<Diseniador> listaDiseniadores = new ArrayList<Diseniador>();
     
-    // Metodo: Busca si existe el diseniador con ese nombre
-    public boolean existeDiseniador(String nombre){
-        // Chequea si el disenador ya esta en la lista o no
-        boolean existe = false;
-        
-        for (Diseniador d: listaDiseniadores){
-            if(d.getNombre().equals(nombre)){
-                existe = true;
-            }
-            else{
-                existe = false;
+    // Metodo: Buscar diseniador por nombre, retorna null si no existe
+    public Diseniador buscarDiseniador(String nombre){
+        for (Diseniador d : listaDiseniadores){
+            if (d.getNombre().equalsIgnoreCase(nombre)){
+                return d;
             }
         }
-        return existe;
+        return null;
+    }
+    
+    // Metodo: Indica si ya existe un diseniador con ese nombre
+    public boolean existeDiseniador(String nombre){
+        return buscarDiseniador(nombre) != null;
     }
     
     // Metodo: Registra un diseniador
@@ -130,7 +129,7 @@ public class Sistema {
         return buscarFicha(nombre) != null;
     }
     
-    // Pre cargar fichas
+    // Precargar fichas
     public void precargarFichas(){
         registrarFicha("SOL", "M", "\\|/-*-/|\\", "..|...\\|/.--*--./|\\...|..");
         registrarFicha("CUADRADO", "N", "+-+|.|+-+", "+---+|...||...||...|+---+");
