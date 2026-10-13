@@ -65,7 +65,9 @@ public class Main {
                 }
                 
                 case 1 -> {
-                    System.out.println("Opcion 1 anda");
+                    System.out.println("Entró en la opción 1.");
+                    System.out.println();
+                    sistema.mostrarAutores();
                 }
                 
                 case 2 -> {

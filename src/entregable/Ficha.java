@@ -84,7 +84,7 @@ public class Ficha {
     // validadores 
     
     public static boolean colorValido(String color) {
-    return color.length() == 1 && "RABNMVGC".contains(color);
+        return color.length() == 1 && "RABNMVGC".contains(color);
     }
 
     public static boolean chicoValido(String diseno) {

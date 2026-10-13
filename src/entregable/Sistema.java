@@ -141,10 +141,33 @@ public class Sistema {
         registrarFicha("VACIA", "B", ".........", ".........................");
     }
         
-        
-}
+      
+    
     
     //--------------------------------------------------------------------------
+    // Nombre de autores
+    
+    public void mostrarAutores(){
+        System.out.println("Integrante 1: ");
+        System.out.println("Nombre: Salvador Fernandez");
+        System.out.println("Número: 262807");
+        System.out.println();
+        System.out.println("Integrante 2: ");
+        System.out.println("Nombre: Paola Russo");
+        System.out.println("Número: 225129");
+    }
+    
+    //--------------------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    
+}
+    
+    
     
     
     
