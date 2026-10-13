@@ -54,9 +54,30 @@ public class Main {
             System.out.println();
             System.out.println("Ingrese el número de la opción deseada: ");
             
-            opcion = in.nextInt();
-            in.nextLine(); // consume el enter sino da un error en la lectura de datos
+            
+            //---
+            // Manejo de excepciones, por si ingresa otra cosa que no sea uno
+            // de esos numeros (letras, palabras, otro numero)
+            
+            // Revisa si el siguiente dato es un int, sin consumirlo
+            boolean esNumero = in.hasNextInt();
+
+            if(esNumero){
+                // lee el int
+                opcion = in.nextInt();
+                // consume el resto de la linea para que no quede pendiente el Scanner
+                in.nextLine();
+            }
+            else{
+                in.nextLine();
+                // Si se ejecuta esto el programa entra en el switch y en default
+                // pq no existe esa opcion
+                opcion = -1;
+            }
             System.out.println();
+            //---
+            
+
 
             switch (opcion) {
                 case 0 -> {
@@ -183,7 +204,7 @@ public class Main {
                 
                 
                 
-                default -> System.out.println("Opcion inválida, ingrese otro número");
+                default -> System.out.println("Opcion inválida, debe ingresar un número. Intente nuevamente.");
                 
             }
         }
