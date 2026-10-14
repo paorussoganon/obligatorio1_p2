@@ -155,7 +155,28 @@ public class Mural {
     
     private void generarBorde(){
         
+        // Recorro toda la matriz,
+        // si la posición actual es el i o j correspondiente al borde
+        // entonces completo con ficha 1
+        // si no es ninguna de esas posiciones, completo con ficha 2.
+        // Ojo que al usar <, el borde derecho es j = mat[0].length - 1
+        // y el borde de abajo es i = mat.length - 1
+        
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+        
+                if (i == 0 || i == mat.length - 1 || j == 0 || j == mat[0].length - 1){
+                    
+                    mat[i][j] = ficha1;
+                }
+                else{
+                    mat[i][j] = ficha2;
+                }
+            }
+        }
     }
+    
+    //--------------------------------------------------------------------------
     
     private void generarRandom(){
         

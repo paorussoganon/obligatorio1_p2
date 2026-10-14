@@ -206,7 +206,7 @@ public class Main {
                     // Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
                     
                     // Para probar el mural damero
-                    Mural mural2 = new Mural("Artistico", d1, "F", f1, f2);
+                    Mural mural2 = new Mural("Artistico", d1, "B", f1, f2);
                     
                     mural2.imprimirChico();
                     mural2.imprimirGrande();
