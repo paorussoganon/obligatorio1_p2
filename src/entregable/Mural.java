@@ -90,6 +90,8 @@ public class Mural {
     
     // Metodos para crear cada opcion de matriz
     
+    //--------------------------------------------------------------------------
+    
     private void generarDamero(){
         
         // Recorro todas las posiciones ij de la matriz
@@ -128,10 +130,28 @@ public class Mural {
         
     }
     
+    //--------------------------------------------------------------------------
+    
     private void generarFilas(){
         
+        // Recorro toda la matriz
+        // si i es par, asigno la ficha 1
+        // si i es impar, asigno la ficha 2        
+        
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                if (i % 2 == 0){
+                    mat[i][j] = ficha1;
+                }
+                else{
+                    mat[i][j] = ficha2;
+                }
+            }
+        }
         
     }
+    
+    //--------------------------------------------------------------------------
     
     private void generarBorde(){
         
