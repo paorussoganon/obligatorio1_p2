@@ -197,13 +197,19 @@ public class Main {
                     // Paso los datos asi solo para probar si anda
                     // despues se los ingresa a mano
                     Diseniador d1 = new Diseniador("Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
-                    Ficha f1 = sistema.getListaFichas().get(1);
+                    Ficha f1 = sistema.getListaFichas().get(0);
                     Ficha f2 = sistema.getListaFichas().get(1);
                     //Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..*.. .***. ***** .***. ..*..");
                     //Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", " .*. .*. ***** *****  ***   *  ");
-                    Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
-                    miMural.imprimirChico();
-                    miMural.imprimirGrande();
+                    
+                    // Para probar el mural de prueba
+                    // Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
+                    
+                    // Para probar el mural damero
+                    Mural mural2 = new Mural("Artistico", d1, "D", f1, f2);
+                    
+                    mural2.imprimirChico();
+                    mural2.imprimirGrande();
                 }
                 
                 //--------------------------------------------------------------               

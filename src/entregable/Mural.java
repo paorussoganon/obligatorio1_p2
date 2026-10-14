@@ -12,7 +12,7 @@ public class Mural {
     
     String nombre;
     Diseniador diseniador;
-    String formatoOriginal;
+    String formato;
     Ficha[][] mat;
     Ficha[][] matRespaldo;
     Ficha ficha1;
@@ -30,8 +30,8 @@ public class Mural {
         return diseniador;
     }
 
-    public String getFormatoOriginal() {
-        return formatoOriginal;
+    public String getFormato() {
+        return formato;
     }
 
     public Ficha[][] getMat() {
@@ -54,10 +54,10 @@ public class Mural {
 
     // Constructores
     
-    public Mural(String unNombre, Diseniador unDiseniador, String unFormatoOriginal, Ficha unaFicha1, Ficha unaFicha2) {
+    public Mural(String unNombre, Diseniador unDiseniador, String unFormato, Ficha unaFicha1, Ficha unaFicha2) {
         this.nombre = unNombre;
         this.diseniador = unDiseniador;
-        this.formatoOriginal = unFormatoOriginal;
+        this.formato = unFormato;
         this.ficha1 = unaFicha1;
         this.ficha2 = unaFicha2;
         
@@ -75,7 +75,7 @@ public class Mural {
     
     private void crearMatriz(){
         // Llamo al metodo que crea la matriz segun la opcion
-        switch (this.formatoOriginal.toUpperCase()){
+        switch (this.formato.toUpperCase()){
             case "D" -> this.generarDamero();
             case "F" -> this.generarFilas();
             case "B" -> this.generarBorde();
@@ -92,9 +92,44 @@ public class Mural {
     
     private void generarDamero(){
         
+        // Recorro todas las posiciones ij de la matriz
+        
+        // Si i es par (i = 0, 2, 4...)
+        // asigno la ficha 1 a las j pares
+        // y la ficha 2 a las j impares
+        
+        // Si i es impar (i = 1, 3, 5...)
+        // asigno al reves, la ficha 2 a las j pares
+        // la ficha 1 a las j impares
+        
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                
+                if (i % 2 == 0){
+                    if (j % 2 == 0){
+                        mat[i][j] = ficha1;
+                    }
+                    else{
+                        mat[i][j] = ficha2;
+                    }
+                }
+                
+                
+                else{
+                    if (j % 2 == 0){
+                        mat[i][j] = ficha2;
+                    }
+                    else{
+                        mat[i][j] = ficha1;
+                    }
+                }
+            }
+        }
+        
     }
     
     private void generarFilas(){
+        
         
     }
     
@@ -107,14 +142,14 @@ public class Mural {
     }
     
     private void generarManual(){
-        
+                
     }
     
     // Genero una matriz cualquiera para probar
     private void generarPrueba(){
-        for (int i = 0; i < this.mat.length; i++){
-            for (int j = 0; j < this.mat[0].length; j++){
-                this.mat[i][j] = this.ficha1;
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                mat[i][j] = ficha1;
             }
         }
     }
@@ -124,9 +159,24 @@ public class Mural {
         
     }
     
+    private String nombreDelFormato(String formato){
+        String nombreFormato = "";
+        switch (formato.toUpperCase()){
+            case "D" -> nombreFormato = "Damero";
+            case "F" -> nombreFormato = "Filas";
+            case "B" -> nombreFormato = "Borde exterior";
+            case "R" -> nombreFormato = "Random";
+            case "M" -> nombreFormato = "Manual";
+            case "P" -> nombreFormato = "Prueba";
+        }
+        return nombreFormato;
+    }
 
     public void imprimirChico() {
-        System.out.println("=== MURAL tamaño chico, " + "tipo de formato: " + this.nombre + " ===");
+        System.out.println("#-----------------------------------");
+        System.out.println("");
+        System.out.println("Mural tamaño chico, " + "formato: " + nombreDelFormato(formato));
+        System.out.println("");
         
         // Este procedimiento imprime cualquier mural chico
         
@@ -143,7 +193,7 @@ public class Mural {
             for (int k = 0; k < 3; k++) {
                 for (int j = 0; j < 12; j++) {
                     
-                    String dibujo = this.mat[i][j].getChico();
+                    String dibujo = mat[i][j].getChico();
                     int inicio = k * 3;
 
                     System.out.print(
@@ -153,29 +203,26 @@ public class Mural {
                 System.out.println();
             }
         }
+        System.out.println("");
     }
 
     
     
+    
      public void imprimirGrande() {
-        System.out.println("=== MURAL tamaño grande, " + "tipo de formato: " + this.nombre + " ===");
+        System.out.println("#-----------------------------------");
+        System.out.println("");
+        System.out.println("Mural tamaño grande, " + "formato: " + nombreDelFormato(formato));
+        System.out.println("");
         
-        // Este procedimiento imprime cualquier mural chico
-        
-        // Comienza por la primera fila i = 0,
-        // con k recorre la primera ficha (versión tamaño grande), y recorta los primeros 3 caracteres
-        // con j, recorre todas las posiciones de columna de la matriz,
-        // y repite el procedimiento con cada ficha
-        // con eso imprime toda la primera fila
-        // luego hace un salto de linea,
-        // y pasa a la segunda fila i = 1, para repetir el procedimiento
-        // Asi completa todo el mural
+        // Este procedimiento imprime cualquier mural grande        
+        // Idem al imprimirChico, pero usando la ficha de tamaño grande.
         
         for (int i = 0; i < 10; i++) {
             for (int k = 0; k < 5; k++) {
                 for (int j = 0; j < 12; j++) {
                     
-                    String dibujo = this.mat[i][j].getGrande();
+                    String dibujo = mat[i][j].getGrande();
                     int inicio = k * 5;
 
                     System.out.print(
@@ -185,6 +232,8 @@ public class Mural {
                 System.out.println();
             }
         }
+        System.out.println("");
+        System.out.println("#-----------------------------------");
     }   
 
 
