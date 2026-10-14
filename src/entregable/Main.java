@@ -30,8 +30,6 @@ public class Main {
         int opcion;
 
         
-
-        
         Scanner in = new Scanner(System.in);
 
         
@@ -181,7 +179,16 @@ public class Main {
                 
                     
                     
-                case 4 -> System.out.println("Opcion 4 anda");
+                case 4 -> {System.out.println("Ingresó en la opción creación de mural.");
+                
+                    // Paso los datos asi solo para probar si anda
+                    Diseniador d1 = new Diseniador("Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
+                    Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..");
+                    Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", "..");
+                    Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
+                    miMural.imprimirChico();
+                }
+                
                 case 5 -> System.out.println("Opcion 5 anda");
                 case 6 -> System.out.println("Opcion 6 anda");
                 case 7 -> {
@@ -192,6 +199,7 @@ public class Main {
                 case 8 -> System.out.println("Opcion 8 anda");
                 
                 case 9 -> {
+                    System.out.println("Ingresó en la opción visualizar todas las fichas.");
                     for (Ficha f : sistema.getListaFichas()) {
                         System.out.println("Ficha: " + f.getNombre());
                         System.out.println("Color: " + f.getColor());
