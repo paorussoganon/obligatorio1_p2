@@ -126,17 +126,28 @@ public class Mural {
     
 
     public void imprimirChico() {
-        System.out.println("=== MURAL: " + this.nombre + " ===");
-
-        for (int f = 0; f < 10; f++) {
-            for (int sub = 0; sub < 3; sub++) {
-                for (int c = 0; c < 12; c++) {
-                    String dibujo = this.mat[f][c].getChico();
-                    int inicio = sub * 3;
+        System.out.println("=== MURAL tamaño chico, " + "tipo de formato: " + this.nombre + " ===");
+        
+        // Este procedimiento imprime cualquier mural chico
+        
+        // Comienza por la primera fila i = 0,
+        // con k recorre la primera ficha (versión tamaño chico, y recorta los primeros 3 caracteres
+        // con j, recorre todas las posiciones de columna de la matriz,
+        // y repite el procedimiento con cada ficha
+        // con eso imprime toda la primera fila
+        // luego hace un salto de linea,
+        // y pasa a la segunda fila i = 1, para repetir el procedimiento
+        // Asi completa todo el mural
+        
+        for (int i = 0; i < 10; i++) {
+            for (int k = 0; k < 3; k++) {
+                for (int j = 0; j < 12; j++) {
+                    
+                    String dibujo = this.mat[i][j].getChico();
+                    int inicio = k * 3;
 
                     System.out.print(
-                        dibujo.substring(inicio, inicio + 3)
-                              .replace('.', ' ')
+                        dibujo.substring(inicio, inicio + 3).replace('.', ' ')
                     );
                 }
                 System.out.println();
@@ -146,7 +157,35 @@ public class Mural {
 
     
     
-    
+     public void imprimirGrande() {
+        System.out.println("=== MURAL tamaño grande, " + "tipo de formato: " + this.nombre + " ===");
+        
+        // Este procedimiento imprime cualquier mural chico
+        
+        // Comienza por la primera fila i = 0,
+        // con k recorre la primera ficha (versión tamaño grande), y recorta los primeros 3 caracteres
+        // con j, recorre todas las posiciones de columna de la matriz,
+        // y repite el procedimiento con cada ficha
+        // con eso imprime toda la primera fila
+        // luego hace un salto de linea,
+        // y pasa a la segunda fila i = 1, para repetir el procedimiento
+        // Asi completa todo el mural
+        
+        for (int i = 0; i < 10; i++) {
+            for (int k = 0; k < 5; k++) {
+                for (int j = 0; j < 12; j++) {
+                    
+                    String dibujo = this.mat[i][j].getGrande();
+                    int inicio = k * 5;
+
+                    System.out.print(
+                        dibujo.substring(inicio, inicio + 5).replace('.', ' ')
+                    );
+                }
+                System.out.println();
+            }
+        }
+    }   
 
 
         

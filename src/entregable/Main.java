@@ -75,19 +75,27 @@ public class Main {
             System.out.println();
             //---
             
-
-
+            // Según lo que ingresó el usuario, se entra en cada case del switch
+            
             switch (opcion) {
+                
+                //--------------------------------------------------------------
+                
                 case 0 -> {
+                    System.out.println("Ha entrado en la opción terminar. El programa ha terminado.");
                     System.out.println("El programa ha terminado.");
                     entrar = false;
                 }
                 
+                //--------------------------------------------------------------
+                
                 case 1 -> {
-                    System.out.println("Entró en la opción 1.");
+                    System.out.println("Ha entrado en la opción información de autores.");
                     System.out.println();
                     sistema.mostrarAutores();
                 }
+                
+                //--------------------------------------------------------------
                 
                 case 2 -> {
                     String nombre = "";
@@ -97,6 +105,7 @@ public class Main {
                     
                     // Sistema.registrarDosDiseniadores();
                     
+                    System.out.println("Ha entrado en la opción registrar diseñador.");
                     System.out.println("Ingrese los datos del diseñador.");
                     while(!check){
                         System.out.println("Nombre: ");
@@ -118,6 +127,8 @@ public class Main {
                     sistema.registrarDiseniador(nombre, direccion, mail);
                 }
                 
+                //--------------------------------------------------------------
+                
                 case 3 -> {
                     
                     String nombre = "";
@@ -126,6 +137,7 @@ public class Main {
                     String grande = "";
                     boolean check = false;
                     
+                    System.out.println("Ha entrado en la opción registrar ficha.");
                     System.out.println("Ingrese los datos de la ficha.");
                     
                     while(!check){
@@ -178,28 +190,44 @@ public class Main {
                 
                 
                     
-                    
-                case 4 -> {System.out.println("Ingresó en la opción creación de mural.");
+                //--------------------------------------------------------------    
+                case 4 -> {System.out.println("Ha entrado en la opción creación de mural.");
                 
                     // Paso los datos asi solo para probar si anda
+                    // despues se los ingresa a mano
                     Diseniador d1 = new Diseniador("Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
-                    Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..");
-                    Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", "..");
+                    Ficha f1 = sistema.getListaFichas().get(1);
+                    Ficha f2 = sistema.getListaFichas().get(1);
+                    //Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..*.. .***. ***** .***. ..*..");
+                    //Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", " .*. .*. ***** *****  ***   *  ");
                     Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
                     miMural.imprimirChico();
+                    miMural.imprimirGrande();
                 }
                 
-                case 5 -> System.out.println("Opcion 5 anda");
-                case 6 -> System.out.println("Opcion 6 anda");
+                //--------------------------------------------------------------               
+                
+                case 5 -> System.out.println("Ha entrado en la opción modificar mural.");
+                
+                //--------------------------------------------------------------
+                
+                case 6 -> System.out.println("Ha entrado en la opción visualizar mural.");
+                
+                //--------------------------------------------------------------
+                
                 case 7 -> {
-                    System.out.println("Opcion 7 anda");
+                    System.out.println("Ha entrado en la opción Listado de diseñadores.");
                     sistema.mostrarListaDiseniadores();
                 }
                 
-                case 8 -> System.out.println("Opcion 8 anda");
+                //--------------------------------------------------------------
+                
+                case 8 -> System.out.println("Ha entrado en la opción comparar similitud de murales.");
+                
+                //--------------------------------------------------------------
                 
                 case 9 -> {
-                    System.out.println("Ingresó en la opción visualizar todas las fichas.");
+                    System.out.println("Ha entrado en la opción visualizar todas las fichas.");
                     for (Ficha f : sistema.getListaFichas()) {
                         System.out.println("Ficha: " + f.getNombre());
                         System.out.println("Color: " + f.getColor());
@@ -210,10 +238,11 @@ public class Main {
                     }
                 }
                 
-                
+                //--------------------------------------------------------------
                 
                 default -> System.out.println("Opcion inválida, debe ingresar un número. Intente nuevamente.");
                 
+                //--------------------------------------------------------------
             }
         }
         
