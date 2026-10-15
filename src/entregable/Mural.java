@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package entregable;
+import java.util.Scanner;
 
 /**
  *
@@ -15,8 +16,12 @@ public class Mural {
     String formato;
     Ficha[][] mat;
     Ficha[][] matRespaldo;
+    Ficha ficha0;
     Ficha ficha1;
     Ficha ficha2;
+    
+
+    
     
     
     //--------------------------------------------------------------------------
@@ -38,6 +43,10 @@ public class Mural {
         return mat;
     }
 
+    public Ficha getFicha0() {
+        return ficha0;
+    }    
+    
     public Ficha getFicha1() {
         return ficha1;
     }
@@ -54,12 +63,14 @@ public class Mural {
 
     // Constructores
     
-    public Mural(String unNombre, Diseniador unDiseniador, String unFormato, Ficha unaFicha1, Ficha unaFicha2) {
+    public Mural(String unNombre, Diseniador unDiseniador, String unFormato, Ficha unaFicha0, Ficha unaFicha1, Ficha unaFicha2) {
         this.nombre = unNombre;
         this.diseniador = unDiseniador;
         this.formato = unFormato;
+        this.ficha0 = unaFicha0;
         this.ficha1 = unaFicha1;
         this.ficha2 = unaFicha2;
+        
         
         // Creo matriz de 10 filas x 12 columnas
         this.mat = new Ficha[10][12];
@@ -114,8 +125,7 @@ public class Mural {
                     else{
                         mat[i][j] = ficha2;
                     }
-                }
-                
+                }               
                 
                 else{
                     if (j % 2 == 0){
@@ -182,9 +192,106 @@ public class Mural {
         
     }
     
+    //--------------------------------------------------------------------------
+    
     private void generarManual(){
-                
+        
+        // Metodo para ingresar fichas en el mural, manualmente
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                mat[i][j] = ficha0;
+            }        
+        }
+        
+        boolean continuar = true;
+        Scanner in = new Scanner(System.in);
+        
+        continuar = true;
+        while (continuar){
+
+            // Solicito coordenadas donde quiere ubicar la ficha
+            // verificando que no sean invalidas
+            System.out.println("Ingrese la coordenada (i, j) en la que desea colocar la ficha:");
+
+            int coordi = -1;
+            boolean validai = false;
+            while (validai == false){
+                System.out.println("i - vertical (de arriba hacia abajo, entre 0 y 9): ");
+                coordi = in.nextInt();
+                in.nextLine(); // Limpio el buffer
+                validai = (coordi >= 0) && (coordi < mat.length);
+                if (validai == false){
+                    System.out.println("La coordenada i ingresada es incorrecta, inténtelo nuevamente.");
+                }
+            }
+
+            int coordj = -1;
+            boolean validaj = false;
+            while (validaj == false){
+                System.out.println("j - horizontal (de izquierda a derecha, entre 0 y 11): ");
+                coordj = in.nextInt();
+                in.nextLine(); // Limpio el buffer
+                validaj = (coordj >= 0) && (coordj < mat[0].length);
+                if (validaj == false){
+                    System.out.println("La coordenada j ingresada es incorrecta, inténtelo nuevamente.");
+                }            
+            }
+
+            // Solicito que ingrese el numero de ficha,
+            // chequeo que el numero sea 1 o 2 previamente
+            boolean validonum = false;
+            int numeroFicha = -1;
+            while (validonum == false){
+                System.out.println("Indique cuál ficha de las ingresadas quiere colocar: 1 ó 2?)");
+                numeroFicha = in.nextInt();
+                in.nextLine(); // Limpio el buffer
+                validonum = numeroFicha == 1 || numeroFicha == 2;
+                if (validonum == false){
+                    System.out.println("El número de ficha ingresada es incorrecto, inténtelo nuevamente.");
+                }                
+            }
+
+            // Busca la ficha y la inserta en la matriz en las coordenadas indicadas
+            Ficha ficha;
+            if (numeroFicha == 1){
+                mat[coordi][coordj] = ficha1;
+                System.out.println("Se colocó la ficha 1 correctamente.");
+            }
+            else if (numeroFicha == 2){
+                mat[coordi][coordj] = ficha2;
+                System.out.println("Se colocó la ficha 2 correctamente.");
+            }
+
+            boolean validoletra = false;
+            String letrayn = "";
+            while (validoletra == false){
+                System.out.println("Desea continuar ingresando fichas?: (y/n)");
+                letrayn = in.nextLine();
+                validoletra = letrayn.equalsIgnoreCase("y") || letrayn.equalsIgnoreCase("n");           
+                if (validoletra == false){
+                    System.out.println("La letra ingresada es incorrecta, inténtelo nuevamente.");
+                }            
+            }
+
+            System.out.println("Vista previa del mural chico: ");
+            imprimirChico();
+                    
+            // Si el usuario ingresa que no quiere continuar "n", se sale del while
+            if (letrayn.equalsIgnoreCase("n")){
+                continuar = false;
+            }
+            
+        }
+        
     }
+        
+        
+        
+    
+
+
+    
+    //--------------------------------------------------------------------------
     
     // Genero una matriz cualquiera para probar
     private void generarPrueba(){
@@ -195,10 +302,14 @@ public class Mural {
         }
     }
     
+    //--------------------------------------------------------------------------
+    
     private void guardarRespaldo(){
         
         
     }
+    
+    //--------------------------------------------------------------------------
     
     private String nombreDelFormato(String formato){
         String nombreFormato = "";
@@ -212,6 +323,8 @@ public class Mural {
         }
         return nombreFormato;
     }
+    
+    //--------------------------------------------------------------------------
 
     public void imprimirChico() {
         System.out.println("#-----------------------------------");
@@ -247,8 +360,7 @@ public class Mural {
         System.out.println("");
     }
 
-    
-    
+    //--------------------------------------------------------------------------
     
      public void imprimirGrande() {
         System.out.println("#-----------------------------------");
@@ -277,8 +389,7 @@ public class Mural {
         System.out.println("#-----------------------------------");
     }   
 
-
-        
+    //--------------------------------------------------------------------------    
 
     
     

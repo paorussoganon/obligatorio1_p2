@@ -18,7 +18,11 @@ public class Sistema {
     // Para clase Diseniador
     
     // Crea una lista de diseniadores
-    private ArrayList<Diseniador> listaDiseniadores = new ArrayList<Diseniador>();
+    private ArrayList<Diseniador> listaDiseniadores;
+
+    public Sistema() {        
+        listaDiseniadores = new ArrayList<Diseniador>();
+    }
     
     // Metodo: Buscar diseniador por nombre, retorna null si no existe
     public Diseniador buscarDiseniador(String nombre){
@@ -41,10 +45,6 @@ public class Sistema {
         listaDiseniadores.add(diseniador);
     }
     
-    //public ArrayList<Diseniador> getDiseniadores(){
-    //    return listaDiseniadores;
-    //}
-    
     // Metodo: Ordena la lista de diseniadores en orden alfabético
     public ArrayList<Diseniador> ordenar(){
         Collections.sort(listaDiseniadores);
@@ -58,21 +58,6 @@ public class Sistema {
             System.out.println(listaDiseniadores.get(i));
         }
     }
-
-    
-    /*
-    //--------------------------------------------------------------------------
-    public static void registrarDosDiseniadores(){
-        
-        Diseniador d1 = new Diseniador("Salvador", "MontevideoUruguay", "salvador@gmail");
-        //Diseniador d1 = new Diseniador(nombre, direccion, mail);
-        System.out.println(d1);
-        Diseniador d2 = new Diseniador("Paola", "SaltoUruguay", "paola@gmail.com");
-        System.out.println(d2);
-        
-    }
-    //--------------------------------------------------------------------------
-    */
     
     //--------------------------------------------------------------------------
     // Para clase Ficha
@@ -91,30 +76,7 @@ public class Sistema {
         return new ArrayList<Ficha>(listaFichas);
     }
     
-    
-    // Metodo: muestra la lista de fichas con sus atributos
-    //public void mostrarListaFichas(){
-    //    for (int i = 0; i < listaFichas.size(); i++){
-    //        
-    //        Ficha ficha = listaFichas.get(i);
-    //        
-    //        System.out.println("Ficha: " + ficha.getNombre());
-    //        System.out.println("Color: " + ficha.getColor());
-    //        
-    //        // Imprime la ficha chica
-    //        System.out.println("Tamaño chico: ");
-    //        ficha.imprimirFicha(ficha.getChico(), 3);
-    //        
-    //        // Imprime la ficha grande
-    //        System.out.println("Tamaño grande: ");
-    //        ficha.imprimirFicha(ficha.getGrande(), 5);
-    //    
-    //    
-    //    }
-    //}
-    
     // Metodo: Buscar una ficha por nombre, devuelve null si no existe
-    
     public Ficha buscarFicha(String nombre) {
         for (Ficha f : listaFichas) {
             if (f.getNombre().equals(nombre)) {
@@ -125,12 +87,14 @@ public class Sistema {
     }
     
     // Metodo: Indica si ya existe una ficha con ese nombre
+    // devuelve true si la encuentra
     public boolean existeFicha(String nombre) {
         return buscarFicha(nombre) != null;
     }
     
     // Precargar fichas
     public void precargarFichas(){
+        registrarFicha("VACIA", "B", ".........", ".........................");
         registrarFicha("SOL", "M", "\\|/-*-/|\\", "..|...\\|/.--*--./|\\...|..");
         registrarFicha("CUADRADO", "N", "+-+|.|+-+", "+---+|...||...||...|+---+");
         registrarFicha("CORAZON", "R", "*.****.*.", "**.************.***...*..");
@@ -138,11 +102,7 @@ public class Sistema {
         registrarFicha("ARBOL", "V", ".^.^^^.|.", "..^...^^^.^^^^^..|.../.\\.");
         registrarFicha("GATO", "A", "^.^o.o=^=", "/\\_/\\(o.o).>^<../|\\../.\\.");
         registrarFicha("DIAMANTE", "G", ".*.*.*.*.", "..*...*.*.*...*.*.*...*..");
-        registrarFicha("VACIA", "B", ".........", ".........................");
     }
-        
-      
-    
     
     //--------------------------------------------------------------------------
     // Nombre de autores
