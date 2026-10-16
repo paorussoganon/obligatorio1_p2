@@ -197,9 +197,14 @@ public class Main {
                     // Paso los datos asi solo para probar si anda
                     // despues se los ingresa a mano
                     Diseniador d1 = new Diseniador("Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
+                    
                     Ficha f0 = sistema.getListaFichas().get(0);
                     Ficha f1 = sistema.getListaFichas().get(1);
                     Ficha f2 = sistema.getListaFichas().get(7);
+                    
+                    System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
+                    System.out.println("D-Damero/ F-Filas/ B-Borde Exterior/ R-Random/ M-Manual)");
+                    String formato = Helper.leeFormatoValido(in);
                     //Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..*.. .***. ***** .***. ..*..");
                     //Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", " .*. .*. ***** *****  ***   *  ");
                     
@@ -207,7 +212,7 @@ public class Main {
                     // Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
                     
                     // Para probar el mural damero
-                    Mural mural2 = new Mural("Artistico", d1, "M", f0, f1, f2);
+                    Mural mural2 = new Mural("Artistico", d1, formato, f0, f1, f2, sistema);
                     
                     mural2.imprimirChico();
                     mural2.imprimirGrande();

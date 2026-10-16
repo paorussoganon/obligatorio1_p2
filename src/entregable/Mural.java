@@ -19,6 +19,7 @@ public class Mural {
     Ficha ficha0;
     Ficha ficha1;
     Ficha ficha2;
+    Sistema sistema;
     
 
     
@@ -54,6 +55,7 @@ public class Mural {
     public Ficha getFicha2() {
         return ficha2;
     }
+    
     //--------------------------------------------------------------------------
     
     // Setters: no se ponen, pq no se quiere que se puedan modificar los
@@ -63,13 +65,16 @@ public class Mural {
 
     // Constructores
     
-    public Mural(String unNombre, Diseniador unDiseniador, String unFormato, Ficha unaFicha0, Ficha unaFicha1, Ficha unaFicha2) {
+    public Mural(String unNombre, Diseniador unDiseniador, String unFormato,
+                    Ficha unaFicha0, Ficha unaFicha1, Ficha unaFicha2,
+                    Sistema unSistema) {
         this.nombre = unNombre;
         this.diseniador = unDiseniador;
         this.formato = unFormato;
         this.ficha0 = unaFicha0;
         this.ficha1 = unaFicha1;
         this.ficha2 = unaFicha2;
+        this.sistema = unSistema;
         
         
         // Creo matriz de 10 filas x 12 columnas
@@ -190,6 +195,28 @@ public class Mural {
     
     private void generarRandom(){
         
+        // Inicialmente se llena todo el mural con fichas vacías
+        Ficha fichavacia = sistema.getListaFichas().get(0);
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                mat[i][j] = fichavacia;
+            }        
+        }
+        
+        // La cantidad de fichas aleatorias, es aleatoria
+        int cantfichas = (int)(Math.random() * 120) + 1;
+        
+        for (int k = 0; k < cantfichas; k++){
+        
+            // Las coordenadas en las que van, son aleatorias
+            int coordi = (int)(Math.random() * mat.length);
+            int coordj = (int)(Math.random() * mat[0].length);
+
+            // Genero un numero aleatorio entre 1 y 7 (que son las posibles fichas)
+            int rand = (int)(Math.random() * 7);
+            Ficha fichaaleat = sistema.getListaFichas().get(rand);
+            mat[coordi][coordj] = fichaaleat;
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -280,16 +307,8 @@ public class Mural {
             if (letrayn.equalsIgnoreCase("n")){
                 continuar = false;
             }
-            
         }
-        
     }
-        
-        
-        
-    
-
-
     
     //--------------------------------------------------------------------------
     
