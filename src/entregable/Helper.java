@@ -26,9 +26,6 @@ public class Helper {
         boolean valido = false;
         
         while (valido == false) {
-            System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
-            System.out.println("D - Damero / F - Filas / B - Borde Exterior / R - Random / M - Manual");
-            
             formato = in.nextLine();
             
             // Verifico si coincide con alguna opción válida
@@ -48,6 +45,26 @@ public class Helper {
     }
     
     
+    // Método para pedir y validar un nombre de mural único
+    public static String leerNombreMuralUnico(Scanner in, Sistema sistema) {
+        String nombre = "";
+        boolean valido = false;
+        
+        while (!valido) {
+            nombre = in.nextLine().trim();
+            
+            if (nombre.isEmpty()) {
+                System.out.println("Ingresó un nombre vacío, intente de nuevo.");
+            } else if (sistema.existeMural(nombre)) {
+                System.out.println("Ya existe un mural con ese nombre. Ingrese uno diferente.");
+            } else {
+                valido = true;
+            }
+        }
+        
+        System.out.println("Ha ingresado el nombre correctamente.");
+        return nombre;
+    }
     
     
     

@@ -28,6 +28,7 @@ public class Main {
         
         boolean entrar = true;
         int opcion;
+        int IDDiseniador = 0;
 
         
         Scanner in = new Scanner(System.in);
@@ -99,12 +100,11 @@ public class Main {
                 //--------------------------------------------------------------
                 
                 case 2 -> {
+                    
                     String nombre = "";
                     String direccion;
                     String mail;
                     boolean check = false;
-                    
-                    // Sistema.registrarDosDiseniadores();
                     
                     System.out.println("Ha entrado en la opción registrar diseñador.\n");
                     System.out.println("Ingrese los datos del diseñador.");
@@ -117,15 +117,23 @@ public class Main {
                             System.out.println("Ya existe un diseñador con ese nombre.");
                         } else {
                             check = true;
+                            IDDiseniador++;
                         }
                     }
-
+                    
+                    
+                    
                     System.out.println("Dirección: ");
                     direccion = in.nextLine();
                     System.out.println("Mail: ");
                     mail = in.nextLine();
-
-                    sistema.registrarDiseniador(nombre, direccion, mail);
+                    
+                    
+                    sistema.registrarDiseniador(IDDiseniador, nombre, direccion, mail);
+                
+                    
+                    
+                
                 }
                 
                 //--------------------------------------------------------------
@@ -193,10 +201,13 @@ public class Main {
                     
                 //--------------------------------------------------------------    
                 case 4 -> {System.out.println("Ha entrado en la opción creación de mural.\n");
-                
+                    
+                    
+                    
+                    /*
                     // Paso los datos asi solo para probar si anda
                     // despues se los ingresa a mano
-                    Diseniador d1 = new Diseniador("Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
+                    Diseniador d1 = new Diseniador(1, "Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
                     
                     Ficha f0 = sistema.getListaFichas().get(0);
                     Ficha f1 = sistema.getListaFichas().get(1);
@@ -208,14 +219,60 @@ public class Main {
                     //Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..*.. .***. ***** .***. ..*..");
                     //Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", " .*. .*. ***** *****  ***   *  ");
                     
+                    
                     // Para probar el mural de prueba
                     // Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
-                    
-                    // Para probar el mural damero
                     Mural mural2 = new Mural("Artistico", d1, formato, f0, f1, f2, sistema);
+                    */
                     
-                    mural2.imprimirChico();
-                    mural2.imprimirGrande();
+                    Ficha f0 = sistema.getListaFichas().get(0);
+
+                    // Pido un nombre unico para el mural
+                    System.out.println("Ingrese un nombre para el mural: ");
+                    String nombreMural = Helper.leerNombreMuralUnico(in, sistema);
+                    
+                    // Selecciona el diseñador que va a crear el mural
+                    System.out.println("Ingrese el nombre del diseñador del mural: ");
+                    String nombreDiseniador = in.nextLine();
+                    
+                    // Busco al diseñador en el sistema
+                    Diseniador diseniadorEncontrado = sistema.buscarDiseniador(nombreDiseniador);
+                    
+                    if (diseniadorEncontrado == null) {
+                        System.out.println("No se encontró diseñador con ese nombre, debe registrarlo primero.");
+                    }
+                    
+                    // Elijo formato y fichas
+                    System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
+                    System.out.println("D-Damero/ F-Filas/ B-Borde Exterior/ R-Random/ M-Manual)");
+                    String formato = Helper.leeFormatoValido(in);
+                    
+                    System.out.println("Ingrese la ficha 1 que desea usar: (numero entre 1 y 7)");
+                    int numficha1 = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Ha ingresado la ficha 1 correctamente.");
+                    
+                    System.out.println("Ingrese la ficha 2 que desea usar: (numero entre 1 y 7)");
+                    int numficha2 = in.nextInt();
+                    in.nextLine();
+                    System.out.println("Ha ingresado la ficha 2 correctamente.");
+                    
+                    Ficha f1 = sistema.getListaFichas().get(numficha1);
+                    Ficha f2 = sistema.getListaFichas().get(numficha2);
+                    
+                    // Se crea el mural
+                    Mural mural = new Mural(nombreMural, diseniadorEncontrado, formato, f0, f1, f2, sistema);
+
+                    // Guardo el mural en el sistema
+                    sistema.agregarMural(mural);
+
+                    // Elige un formato de mural
+                    
+                    mural.imprimirChico();
+                    mural.imprimirGrande();
+                    
+                    
+
                 }
                 
                 //--------------------------------------------------------------               
@@ -224,7 +281,34 @@ public class Main {
                 
                 //--------------------------------------------------------------
                 
-                case 6 -> System.out.println("Ha entrado en la opción visualizar mural.\n");
+                case 6 -> {
+                    
+                    System.out.println("Ha entrado en la opción visualizar mural.\n");
+                    
+                    // Solo para pruebas, borrar después!!
+                    //sistema.registrarDiseniador(1, "Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
+                    //sistema.registrarDiseniador(2, "Juana De Ibarbourou", "9 de Julio", "Juana@gmail.com");
+                    //sistema.registrarDiseniador(3, "Guadalberta Hernandez", "Arboleda", "Juana@gmail.com");
+                    
+                    // Se muestra la lista de diseñadores
+                    System.out.println("Lista de diseñadores: ");
+                    sistema.mostrarListaDiseniadores();
+                    
+                    // Se elige un diseniador de la lista
+                    System.out.println("Elija un diseñador de la lista, ingrese el número de ID: ");
+                    int numeroDis = in.nextInt();
+                    Diseniador diseniador = sistema.buscarDiseniadorPorID(numeroDis);
+                    System.out.println("Ha elegido el diseñador correctamente.");
+                    
+                    // Se muestra la lista de murales de ese diseniador
+                    
+                    
+                    
+                }
+                    
+                    
+                
+                
                 
                 //--------------------------------------------------------------
                 

@@ -12,6 +12,10 @@ import java.util.Collections;
  */
 public class Sistema {
     
+    public Sistema() {        
+        listaDiseniadores = new ArrayList<Diseniador>();
+        listaMurales = new ArrayList<Mural>();
+    }
     
     //--------------------------------------------------------------------------
     
@@ -19,10 +23,6 @@ public class Sistema {
     
     // Crea una lista de diseniadores
     private ArrayList<Diseniador> listaDiseniadores;
-
-    public Sistema() {        
-        listaDiseniadores = new ArrayList<Diseniador>();
-    }
     
     // Metodo: Buscar diseniador por nombre, retorna null si no existe
     public Diseniador buscarDiseniador(String nombre){
@@ -34,14 +34,24 @@ public class Sistema {
         return null;
     }
     
+    // Metodo: Buscar diseniador por ID
+    public Diseniador buscarDiseniadorPorID(int numero){
+        for (Diseniador d : listaDiseniadores){
+            if (numero == d.getIDDiseniador()){
+                return d;
+            }
+        }
+        return null;
+    }    
+    
     // Metodo: Indica si ya existe un diseniador con ese nombre
     public boolean existeDiseniador(String nombre){
         return buscarDiseniador(nombre) != null;
     }
     
     // Metodo: Registra un diseniador
-    public void registrarDiseniador(String nombre, String direccion, String mail){
-        Diseniador diseniador = new Diseniador(nombre, direccion, mail);
+    public void registrarDiseniador(int IDDiseniador, String nombre, String direccion, String mail){
+        Diseniador diseniador = new Diseniador(IDDiseniador, nombre, direccion, mail);
         listaDiseniadores.add(diseniador);
     }
     
@@ -58,7 +68,50 @@ public class Sistema {
             System.out.println(listaDiseniadores.get(i));
         }
     }
+
+    //--------------------------------------------------------------------------
+    // Para clase Mural
     
+    // Crea una lista de murales
+    private ArrayList<Mural> listaMurales;
+   
+    public void agregarMural(Mural unMural) {
+        this.listaMurales.add(unMural);
+    }
+    
+    // Metodo: Muestra la lista de murales de un diseniador
+    public void mostrarListaMurales(){
+        for (int i = 0; i < listaMurales.size(); i++){
+            System.out.println(listaMurales.get(i));
+        }
+    }
+    
+    // Metodo: Buscar mural por nombre
+    public Mural buscarMuralPorNombre(String nombreMural){
+        for (Mural m : listaMurales){
+            if (nombreMural.equalsIgnoreCase(m.getNombre())){
+                return m;
+            }
+        }
+        return null;
+    } 
+    
+    // Metodo: Indica si ya existe un mural con ese nombre
+    public boolean existeMural(String nombreMural){
+        return buscarMuralPorNombre(nombreMural) != null;
+    }
+    
+    // Método: Muestra solo los murales de un diseñador específico
+    public void mostrarMuralesDeDiseniador(String nombreDiseniador){
+        for (Mural m : listaMurales) {
+            if (m.getDiseniador().getNombre().equalsIgnoreCase(nombreDiseniador)) {
+                System.out.println(m); // O imprime el nombre del mural
+            }
+        }
+    }
+    
+
+
     //--------------------------------------------------------------------------
     // Para clase Ficha
     
