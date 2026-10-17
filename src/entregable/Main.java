@@ -35,7 +35,7 @@ public class Main {
 
         
         while(entrar){
-            
+            Helper.limpiarPantalla();
             System.out.println();
             System.out.println("Opciones: ");
             System.out.println("#---");
@@ -344,6 +344,10 @@ public class Main {
                 default -> System.out.println("Opcion inválida, debe ingresar un número.\n\nIntente nuevamente.");
                 
                 //--------------------------------------------------------------
+            }
+            
+            if (entrar) {
+                Helper.pausar(in);
             }
         }
         
