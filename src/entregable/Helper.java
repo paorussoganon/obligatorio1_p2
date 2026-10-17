@@ -1,21 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entregable;
 import java.util.Scanner;
 
-
-/**
- *
- * @author paorg
- */
 public class Helper {
-    
-    
-    
-
-
 
     // Método para validar que el formato ingresado sea una de las opciones válidas
 
@@ -78,9 +65,74 @@ public class Helper {
     }
     
     
+    public static int leerEnteroEnRango(Scanner in, int min, int max) {
+        while (true) {
+            String linea = in.nextLine().trim();
+            try {
+                int n = Integer.parseInt(linea);
+                if (n >= min && n <= max) {
+                    return n;
+                }
+            } catch (NumberFormatException e) {
+                // falls through to the error message
+            }
+            System.out.println("Ingrese un número entre " + min + " y " + max + ".");
+        }
+    }
     
+    // Helpers de diseniador
     
-    
-}
-    
+    public static Diseniador leerDiseniadorORegistrar(Scanner in, Sistema sistema) {
+        Diseniador diseniador = null;
+        boolean cancelar = false;
 
+        while (diseniador == null && !cancelar) {
+            System.out.println("Ingrese el nombre del diseñador del mural: ");
+            String nombre = in.nextLine().trim();
+            diseniador = sistema.buscarDiseniador(nombre);
+
+            if (diseniador == null) {
+                System.out.println("No existe. ¿Desea registrarlo? (y/n)");
+                String respuesta = in.nextLine().trim();
+                if (respuesta.equalsIgnoreCase("y") && !nombre.isEmpty()) {
+                    System.out.println("Dirección: ");
+                    String direccion = in.nextLine();
+                    System.out.println("Mail: ");
+                    String mail = in.nextLine();
+                    sistema.registrarDiseniador(sistema.siguienteIDDiseniador(), nombre, direccion, mail);
+                    diseniador = sistema.buscarDiseniador(nombre);
+                } else {
+                    cancelar = true;
+                }
+            }
+        }
+        return diseniador;
+    }
+    
+    
+    public static Diseniador registrarDiseniadorConNombre(Scanner in, Sistema sistema, String nombre) {
+        System.out.println("Dirección: ");
+        String direccion = in.nextLine();
+        System.out.println("Mail: ");
+        String mail = in.nextLine();
+        sistema.registrarDiseniador(sistema.siguienteIDDiseniador(), nombre, direccion, mail);
+        return sistema.buscarDiseniador(nombre);
+    }
+
+    public static String leerNombreDiseniadorUnico(Scanner in, Sistema sistema) {
+        String nombre = "";
+        boolean valido = false;
+        while (!valido) {
+            System.out.println("Nombre: ");
+            nombre = in.nextLine().trim();
+            if (nombre.isEmpty()) {
+                System.out.println("El nombre no puede estar vacío.");
+            } else if (sistema.existeDiseniador(nombre)) {
+                System.out.println("Ya existe un diseñador con ese nombre.");
+            } else {
+                valido = true;
+            }
+        }
+        return nombre;
+    }
+}

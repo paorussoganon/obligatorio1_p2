@@ -1,28 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
+
 package entregable;
 
 import java.util.Scanner;
-//import java.io.PrintStream;
-//import java.nio.charset.StandardCharsets;
 
-/**
- *
- * @author paorg
- */
 public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        
-        
-        //System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
-        
         Sistema sistema = new Sistema();
         sistema.precargarFichas();
         
@@ -30,10 +16,8 @@ public class Main {
         int opcion;
         int IDDiseniador = 0;
 
-        
         Scanner in = new Scanner(System.in);
 
-        
         while(entrar){
             Helper.limpiarPantalla();
             System.out.println();
@@ -53,43 +37,26 @@ public class Main {
             System.out.println();
             System.out.println("Ingrese el número de la opción deseada: ");
             
-            
-            //---
-            // Manejo de excepciones, por si ingresa otra cosa que no sea uno
-            // de esos numeros (letras, palabras, otro numero)
-            
-            // Revisa si el siguiente dato es un int, sin consumirlo
             boolean esNumero = in.hasNextInt();
 
             if(esNumero){
-                // lee el int
                 opcion = in.nextInt();
-                // consume el resto de la linea para que no quede pendiente el Scanner
                 in.nextLine();
             }
             else{
                 in.nextLine();
-                // Si se ejecuta esto el programa entra en el switch y en default
-                // pq no existe esa opcion
                 opcion = -1;
             }
             System.out.println();
-            //---
-            
-            // Según lo que ingresó el usuario, se entra en cada case del switch
             
             switch (opcion) {
-                
-                //--------------------------------------------------------------
-                
+
                 case 0 -> {
                     System.out.println("Ha entrado en la opción terminar.");
                     System.out.println("El programa ha terminado.");
                     entrar = false;
                 }
-                
-                //--------------------------------------------------------------
-                
+
                 case 1 -> {
                     System.out.println("Ha entrado en la opción información de autores.\n");
                     System.out.println("#--------------------------------");
@@ -97,47 +64,13 @@ public class Main {
                     System.out.println("#--------------------------------");
                 }
                 
-                //--------------------------------------------------------------
-                
                 case 2 -> {
-                    
-                    String nombre = "";
-                    String direccion;
-                    String mail;
-                    boolean check = false;
-                    
                     System.out.println("Ha entrado en la opción registrar diseñador.\n");
                     System.out.println("Ingrese los datos del diseñador.");
-                    while(!check){
-                        System.out.println("Nombre: ");
-                        nombre = in.nextLine();
-                        if (nombre.isEmpty()){
-                            System.out.println("El nombre no puede estar vacío. "); 
-                        } else if (sistema.existeDiseniador(nombre)) {
-                            System.out.println("Ya existe un diseñador con ese nombre.");
-                        } else {
-                            check = true;
-                            IDDiseniador++;
-                        }
-                    }
-                    
-                    
-                    
-                    System.out.println("Dirección: ");
-                    direccion = in.nextLine();
-                    System.out.println("Mail: ");
-                    mail = in.nextLine();
-                    
-                    
-                    sistema.registrarDiseniador(IDDiseniador, nombre, direccion, mail);
-                
-                    
-                    
-                
+                    String nombre = Helper.leerNombreDiseniadorUnico(in, sistema);
+                    Helper.registrarDiseniadorConNombre(in, sistema, nombre);
                 }
-                
-                //--------------------------------------------------------------
-                
+
                 case 3 -> {
                     
                     String nombre = "";
@@ -198,88 +131,46 @@ public class Main {
                 }
                 
                 
-                    
-                //--------------------------------------------------------------    
                 case 4 -> {System.out.println("Ha entrado en la opción creación de mural.\n");
-                    
-                    
-                    
-                    /*
-                    // Paso los datos asi solo para probar si anda
-                    // despues se los ingresa a mano
-                    Diseniador d1 = new Diseniador(1, "Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
-                    
-                    Ficha f0 = sistema.getListaFichas().get(0);
-                    Ficha f1 = sistema.getListaFichas().get(1);
-                    Ficha f2 = sistema.getListaFichas().get(7);
-                    
-                    System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
-                    System.out.println("D-Damero/ F-Filas/ B-Borde Exterior/ R-Random/ M-Manual)");
-                    String formato = Helper.leeFormatoValido(in);
-                    //Ficha f1 = new Ficha("SOL", "M", ".*.***.|.", "..*.. .***. ***** .***. ..*..");
-                    //Ficha f2 = new Ficha("CORAZON", "R", ".*.***.*.", " .*. .*. ***** *****  ***   *  ");
-                    
-                    
-                    // Para probar el mural de prueba
-                    // Mural miMural = new Mural("Mural de Prueba", d1, "P", f1, f2);
-                    Mural mural2 = new Mural("Artistico", d1, formato, f0, f1, f2, sistema);
-                    */
-                    
+
                     Ficha f0 = sistema.getListaFichas().get(0);
 
                     // Pido un nombre unico para el mural
                     System.out.println("Ingrese un nombre para el mural: ");
                     String nombreMural = Helper.leerNombreMuralUnico(in, sistema);
+
+                    Diseniador diseniadorEncontrado = Helper.leerDiseniadorORegistrar(in, sistema);
                     
-                    // Selecciona el diseñador que va a crear el mural
-                    System.out.println("Ingrese el nombre del diseñador del mural: ");
-                    String nombreDiseniador = in.nextLine();
-                    
-                    // Busco al diseñador en el sistema
-                    Diseniador diseniadorEncontrado = sistema.buscarDiseniador(nombreDiseniador);
-                    
-                    if (diseniadorEncontrado == null) {
-                        System.out.println("No se encontró diseñador con ese nombre, debe registrarlo primero.");
+                    if (diseniadorEncontrado != null) {
+
+                        // Elijo formato y fichas
+                        System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
+                        System.out.println("D-Damero/ F-Filas/ B-Borde Exterior/ R-Random/ M-Manual)");
+                        String formato = Helper.leeFormatoValido(in);
+
+                        int cantidadFichas = sistema.getListaFichas().size() - 1;
+                        System.out.println("Ingrese la ficha 1 que desea usar: (numero entre 1 y " + cantidadFichas + ")");
+                        int numficha1 = Helper.leerEnteroEnRango(in, 1, cantidadFichas);
+                        System.out.println("Ha ingresado la ficha 1 correctamente.");
+
+                        System.out.println("Ingrese la ficha 2 que desea usar: (numero entre 1 y " + cantidadFichas + ")");
+                        int numficha2 = Helper.leerEnteroEnRango(in, 1, cantidadFichas);
+                        System.out.println("Ha ingresado la ficha 2 correctamente.");
+
+                        Ficha f1 = sistema.getListaFichas().get(numficha1);
+                        Ficha f2 = sistema.getListaFichas().get(numficha2);
+
+                        // Se crea el mural
+                        Mural mural = new Mural(nombreMural, diseniadorEncontrado, formato, f0, f1, f2, sistema);
+                        sistema.agregarMural(mural);
+                        mural.imprimirChico();
+                        mural.imprimirGrande();
                     }
-                    
-                    // Elijo formato y fichas
-                    System.out.println("Ingrese la letra correspondiente al formato de Mural que desea dibujar:");
-                    System.out.println("D-Damero/ F-Filas/ B-Borde Exterior/ R-Random/ M-Manual)");
-                    String formato = Helper.leeFormatoValido(in);
-                    
-                    System.out.println("Ingrese la ficha 1 que desea usar: (numero entre 1 y 7)");
-                    int numficha1 = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Ha ingresado la ficha 1 correctamente.");
-                    
-                    System.out.println("Ingrese la ficha 2 que desea usar: (numero entre 1 y 7)");
-                    int numficha2 = in.nextInt();
-                    in.nextLine();
-                    System.out.println("Ha ingresado la ficha 2 correctamente.");
-                    
-                    Ficha f1 = sistema.getListaFichas().get(numficha1);
-                    Ficha f2 = sistema.getListaFichas().get(numficha2);
-                    
-                    // Se crea el mural
-                    Mural mural = new Mural(nombreMural, diseniadorEncontrado, formato, f0, f1, f2, sistema);
-
-                    // Guardo el mural en el sistema
-                    sistema.agregarMural(mural);
-
-                    // Elige un formato de mural
-                    
-                    mural.imprimirChico();
-                    mural.imprimirGrande();
-                    
                     
 
                 }
                 
-                //--------------------------------------------------------------               
-                
                 case 5 -> System.out.println("Ha entrado en la opción modificar mural.\n");
-                
-                //--------------------------------------------------------------
                 
                 case 6 -> {
                     
@@ -305,23 +196,13 @@ public class Main {
                     
                     
                 }
-                    
-                    
-                
-                
-                
-                //--------------------------------------------------------------
-                
+
                 case 7 -> {
                     System.out.println("Ha entrado en la opción Listado de diseñadores.\n");
                     sistema.mostrarListaDiseniadores();
                 }
                 
-                //--------------------------------------------------------------
-                
                 case 8 -> System.out.println("Ha entrado en la opción comparar similitud de murales.\n");
-                
-                //--------------------------------------------------------------
                 
                 case 9 -> {
                     System.out.println("Ha entrado en la opción visualizar todas las fichas.\n");
@@ -338,22 +219,14 @@ public class Main {
                         System.out.println("#--------------------------------");
                     }
                 }
-                
-                //--------------------------------------------------------------
-                
+
                 default -> System.out.println("Opcion inválida, debe ingresar un número.\n\nIntente nuevamente.");
-                
-                //--------------------------------------------------------------
             }
             
             if (entrar) {
                 Helper.pausar(in);
             }
         }
-        
         in.close();
-        
     }
-    
-
 }

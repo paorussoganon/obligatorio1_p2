@@ -10,27 +10,18 @@ package entregable;
  */
 public class Diseniador implements Comparable<Diseniador>{
     
-    
-    
-    // variables de instancia
     private int IDDiseniador;
     private String nombre;
     private String mail;
     private String direccion;
 
-    
-    // Constructores
     public Diseniador(int IDDiseniador, String nombre, String direccion, String mail){
         this.setIDDiseniador(IDDiseniador);
         this.setNombre(nombre);
         this.setDireccion(direccion);
         this.setMail(mail);
     }
-    
-    
-    
-    // Metodo de acceso
-    
+
     public int getIDDiseniador(){
         return IDDiseniador;
     }
@@ -64,8 +55,6 @@ public class Diseniador implements Comparable<Diseniador>{
         direccion = unaDireccion;
     }
 
-    
-    
     // Para imprimir
     @Override
     public String toString(){
@@ -77,7 +66,5 @@ public class Diseniador implements Comparable<Diseniador>{
     public int compareTo(Diseniador diseniador2){
         return this.getNombre().compareToIgnoreCase(diseniador2.getNombre());
     }
-    
-    
-    
+
 }

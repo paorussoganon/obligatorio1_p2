@@ -1,15 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entregable;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author paorg
- */
+
 public class Sistema {
     
     public Sistema() {        
@@ -140,7 +134,6 @@ public class Sistema {
     }
     
     // Metodo: Indica si ya existe una ficha con ese nombre
-    // devuelve true si la encuentra
     public boolean existeFicha(String nombre) {
         return buscarFicha(nombre) != null;
     }
@@ -156,8 +149,7 @@ public class Sistema {
         registrarFicha("GATO", "A", "^.^o.o=^=", "/\\_/\\(o.o).>^<../|\\../.\\.");
         registrarFicha("DIAMANTE", "G", ".*.*.*.*.", "..*...*.*.*...*.*.*...*..");
     }
-    
-    //--------------------------------------------------------------------------
+  
     // Nombre de autores
     
     public void mostrarAutores(){
@@ -173,10 +165,13 @@ public class Sistema {
     //--------------------------------------------------------------------------
     
     
+    // ultimo ID para helpers 
+    private int ultimoIDDiseniador = 0;
     
-    
-    
-    
+    public int siguienteIDDiseniador() {
+        ultimoIDDiseniador++;
+        return ultimoIDDiseniador;
+    }
     
 }
     
