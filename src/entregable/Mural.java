@@ -1,5 +1,7 @@
 package entregable;
+
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Mural {
     
@@ -272,9 +274,45 @@ public class Mural {
     //--------------------------------------------------------------------------
     
     private void guardarRespaldo(){
-        
-        
-        
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                matRespaldo[i][j] = mat[i][j];
+            }
+        }
+    }
+    public void restaurar(){
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                mat[i][j] = matRespaldo[i][j];
+            }
+        }
+    }
+    
+    // Helpers para opcion 5
+    public void modificarPosicion(int fila, int columna, Ficha nueva){
+        mat[fila][columna] = nueva;
+    }
+    
+    public ArrayList<Ficha> fichasUsadas(){
+        ArrayList<Ficha> usadas = new ArrayList<>();
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                if (!usadas.contains(mat[i][j])){
+                    usadas.add(mat[i][j]);
+                }
+            }
+        }
+        return usadas;
+    }
+    
+    public void reemplazarFicha(Ficha vieja, Ficha nueva){
+        for (int i = 0; i < mat.length; i++){
+            for (int j = 0; j < mat[0].length; j++){
+                if (mat[i][j] == vieja){
+                    mat[i][j] = nueva;
+                }
+            }
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -365,6 +403,4 @@ public class Mural {
     return "Mural: " + nombre + ", diseñador: " + diseniador.getNombre()
          + ", formato: " + nombreDelFormato(formato);
     }
-    
-    
 }

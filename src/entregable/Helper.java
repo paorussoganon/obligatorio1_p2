@@ -1,6 +1,7 @@
-
 package entregable;
+
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Helper {
 
@@ -133,5 +134,69 @@ public class Helper {
             }
         }
         return nombre;
+    }
+    
+    // Helpers de mural
+    
+    public static Mural elegirMural(Scanner in, ArrayList<Mural> murales) {
+        for (int i = 0; i < murales.size(); i++) {
+            System.out.println((i + 1) + " - " + murales.get(i));
+        }
+        System.out.println("Elija un mural: ");
+        int num = leerEnteroEnRango(in, 1, murales.size());
+        return murales.get(num - 1);
+    }
+
+    public static Ficha elegirFicha(Scanner in, ArrayList<Ficha> fichas) {
+        for (int i = 0; i < fichas.size(); i++) {
+            System.out.println((i + 1) + " - " + fichas.get(i).getNombre());
+        }
+        System.out.println("Elija una ficha: ");
+        int num = leerEnteroEnRango(in, 1, fichas.size());
+        return fichas.get(num - 1);
+    }
+
+    public static void submenuModificarMural(Scanner in, Sistema sistema, Mural mural) {
+        boolean volver = false;
+        while (!volver) {
+            System.out.println("\nModificar mural: " + mural.getNombre());
+            System.out.println("0 - Volver al menú anterior.");
+            System.out.println("1 - Modificar posición.");
+            System.out.println("2 - Modificar ficha.");
+            System.out.println("3 - Restaurar.");
+            System.out.println("Ingrese una opción: ");
+            int opcion = leerEnteroEnRango(in, 0, 3);
+
+            switch (opcion) {
+                case 0 -> volver = true;
+
+                case 1 -> {
+                    System.out.println("Fila (1 a " + mural.getMat().length + "): ");
+                    int fila = leerEnteroEnRango(in, 1, mural.getMat().length);
+                    System.out.println("Columna (1 a " + mural.getMat()[0].length + "): ");
+                    int columna = leerEnteroEnRango(in, 1, mural.getMat()[0].length);
+                    Ficha nueva = elegirFicha(in, sistema.getListaFichas());
+                    mural.modificarPosicion(fila - 1, columna - 1, nueva);
+                    mural.imprimirChico();
+                    mural.imprimirGrande();
+                }
+
+                case 2 -> {
+                    System.out.println("Fichas del mural:");
+                    Ficha vieja = elegirFicha(in, mural.fichasUsadas());
+                    System.out.println("Fichas registradas:");
+                    Ficha nueva = elegirFicha(in, sistema.getListaFichas());
+                    mural.reemplazarFicha(vieja, nueva);
+                    mural.imprimirChico();
+                    mural.imprimirGrande();
+                }
+
+                case 3 -> {
+                    mural.restaurar();
+                    mural.imprimirChico();
+                    mural.imprimirGrande();
+                }
+            }
+        }
     }
 }

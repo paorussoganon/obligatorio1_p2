@@ -10,12 +10,8 @@ public class Sistema {
         listaDiseniadores = new ArrayList<Diseniador>();
         listaMurales = new ArrayList<Mural>();
     }
-    
-    //--------------------------------------------------------------------------
-    
+
     // Para clase Diseniador
-    
-    // Crea una lista de diseniadores
     private ArrayList<Diseniador> listaDiseniadores;
     
     // Metodo: Buscar diseniador por nombre, retorna null si no existe
@@ -71,11 +67,7 @@ public class Sistema {
         return ultimoIDDiseniador;
     }
     
-
-    //--------------------------------------------------------------------------
     // Para clase Mural
-    
-    // Crea una lista de murales
     private ArrayList<Mural> listaMurales;
    
     public void agregarMural(Mural unMural) {
@@ -113,6 +105,10 @@ public class Sistema {
         }
     }
     
+    public ArrayList<Mural> getListaMurales() {
+        return new ArrayList<Mural>(listaMurales);
+    }
+    
     public ArrayList<Mural> muralesDeDiseniador(Diseniador d) {
         ArrayList<Mural> resultado = new ArrayList<>();
         for (Mural m : listaMurales) {
@@ -122,13 +118,8 @@ public class Sistema {
         }
         return resultado;
     }
-    
 
-
-    //--------------------------------------------------------------------------
     // Para clase Ficha
-    
-    // Crea una lista de fichas
     private ArrayList<Ficha> listaFichas = new ArrayList<Ficha>();
     
     
@@ -168,9 +159,8 @@ public class Sistema {
         registrarFicha("GATO", "A", "^.^o.o=^=", "/\\_/\\(o.o).>^<../|\\../.\\.");
         registrarFicha("DIAMANTE", "G", ".*.*.*.*.", "..*...*.*.*...*.*.*...*..");
     }
-  
-    // Nombre de autores
     
+    // Nombre de autores
     public void mostrarAutores(){
         System.out.println("Integrante 1: ");
         System.out.println("Nombre: Salvador Fernandez");
@@ -180,10 +170,7 @@ public class Sistema {
         System.out.println("Nombre: Paola Russo");
         System.out.println("Número: 225129");
     }
-    
-    //--------------------------------------------------------------------------
-    
-    
+
 }
     
     

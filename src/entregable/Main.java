@@ -167,7 +167,16 @@ public class Main {
 
                 }
                 
-                case 5 -> System.out.println("Ha entrado en la opción modificar mural.\n");
+                case 5 -> {
+                    System.out.println("Ha entrado en la opción modificar mural.\n");
+                    ArrayList<Mural> murales = sistema.getListaMurales();
+                    if (murales.isEmpty()) {
+                        System.out.println("No hay murales creados.");
+                    } else {
+                        Mural mural = Helper.elegirMural(in, murales);
+                        Helper.submenuModificarMural(in, sistema, mural);
+                    }
+                }
                 
                 case 6 -> {
                     System.out.println("Ha entrado en la opción visualizar mural.\n");
