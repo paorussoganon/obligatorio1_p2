@@ -104,6 +104,16 @@ public class Sistema {
         }
     }
     
+    public ArrayList<Mural> muralesDeDiseniador(Diseniador d) {
+        ArrayList<Mural> resultado = new ArrayList<>();
+        for (Mural m : listaMurales) {
+            if (m.getDiseniador() == d) {
+                resultado.add(m);
+            }
+        }
+        return resultado;
+    }
+    
 
 
     //--------------------------------------------------------------------------

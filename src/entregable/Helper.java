@@ -74,7 +74,6 @@ public class Helper {
                     return n;
                 }
             } catch (NumberFormatException e) {
-                // falls through to the error message
             }
             System.out.println("Ingrese un número entre " + min + " y " + max + ".");
         }

@@ -1,13 +1,10 @@
 
 package entregable;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         Sistema sistema = new Sistema();
         sistema.precargarFichas();
@@ -161,7 +158,7 @@ public class Main {
                         Ficha f2 = sistema.getListaFichas().get(numficha2);
 
                         // Se crea el mural
-                        Mural mural = new Mural(nombreMural, diseniadorEncontrado, formato, f0, f1, f2, sistema);
+                        Mural mural = new Mural(nombreMural, diseniadorEncontrado, formato, f0, f1, f2, sistema, in);
                         sistema.agregarMural(mural);
                         mural.imprimirChico();
                         mural.imprimirGrande();
@@ -173,28 +170,29 @@ public class Main {
                 case 5 -> System.out.println("Ha entrado en la opción modificar mural.\n");
                 
                 case 6 -> {
-                    
                     System.out.println("Ha entrado en la opción visualizar mural.\n");
                     
-                    // Solo para pruebas, borrar después!!
-                    //sistema.registrarDiseniador(1, "Ana Lopez", "18 de Julio 1234", "ana@gmail.com");
-                    //sistema.registrarDiseniador(2, "Juana De Ibarbourou", "9 de Julio", "Juana@gmail.com");
-                    //sistema.registrarDiseniador(3, "Guadalberta Hernandez", "Arboleda", "Juana@gmail.com");
-                    
-                    // Se muestra la lista de diseñadores
-                    System.out.println("Lista de diseñadores: ");
                     sistema.mostrarListaDiseniadores();
+                    System.out.println("Elija un diseñador de la lista ingresando el número de ID: ");
+                    int idIngresado = Helper.leerEnteroEnRango(in, 1, Integer.MAX_VALUE);
+                    Diseniador diseniador = sistema.buscarDiseniadorPorID(idIngresado);
                     
-                    // Se elige un diseniador de la lista
-                    System.out.println("Elija un diseñador de la lista, ingrese el número de ID: ");
-                    int numeroDis = in.nextInt();
-                    Diseniador diseniador = sistema.buscarDiseniadorPorID(numeroDis);
-                    System.out.println("Ha elegido el diseñador correctamente.");
-                    
-                    // Se muestra la lista de murales de ese diseniador
-                    
-                    
-                    
+                    if (diseniador == null) {
+                        System.out.println("No existe un diseñador con ese ID.");
+                    } else {
+                        ArrayList<Mural> murales = sistema.muralesDeDiseniador(diseniador);
+                        if (murales.isEmpty()) {
+                            System.out.println("Ese diseñador no tiene murales.");
+                        } else {
+                            for (int i = 0; i < murales.size(); i++) {
+                                System.out.println((i + 1) + " - " + murales.get(i));
+                            }
+                            System.out.println("Elija un mural: ");
+                            int num = Helper.leerEnteroEnRango(in, 1, murales.size());
+                            murales.get(num - 1).imprimirChico();
+                            murales.get(num - 1).imprimirGrande();
+                        }
+                    }
                 }
 
                 case 7 -> {

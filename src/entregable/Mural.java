@@ -1,14 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entregable;
 import java.util.Scanner;
 
-/**
- *
- * @author paorg
- */
 public class Mural {
     
     String nombre;
@@ -20,11 +12,7 @@ public class Mural {
     Ficha ficha1;
     Ficha ficha2;
     Sistema sistema;
-    
 
-    
-    
-    
     //--------------------------------------------------------------------------
     // Getters, para poder acceder desde afuera a leer los atributos
 
@@ -55,19 +43,10 @@ public class Mural {
     public Ficha getFicha2() {
         return ficha2;
     }
-    
-    //--------------------------------------------------------------------------
-    
-    // Setters: no se ponen, pq no se quiere que se puedan modificar los
-    // atrubitos desde afuera
-    
-    //--------------------------------------------------------------------------
 
-    // Constructores
-    
     public Mural(String unNombre, Diseniador unDiseniador, String unFormato,
                     Ficha unaFicha0, Ficha unaFicha1, Ficha unaFicha2,
-                    Sistema unSistema) {
+                    Sistema unSistema, Scanner in) {
         this.nombre = unNombre;
         this.diseniador = unDiseniador;
         this.formato = unFormato;
@@ -82,21 +61,21 @@ public class Mural {
         this.matRespaldo = new Ficha[10][12];
         
         // Llamo al metodo que completa la matriz segun la opcion indicada
-        this.crearMatriz();
+        this.crearMatriz(in);
         
         // Guardo una copia inicial de respaldo
         this.guardarRespaldo();
     }
     
     
-    private void crearMatriz(){
+    private void crearMatriz(Scanner in){
         // Llamo al metodo que crea la matriz segun la opcion
         switch (this.formato.toUpperCase()){
             case "D" -> this.generarDamero();
             case "F" -> this.generarFilas();
             case "B" -> this.generarBorde();
             case "R" -> this.generarRandom();
-            case "M" -> this.generarManual();
+            case "M" -> this.generarManual(in);
             case "P" -> this.generarPrueba();
         }
         
@@ -221,7 +200,7 @@ public class Mural {
     
     //--------------------------------------------------------------------------
     
-    private void generarManual(){
+    private void generarManual(Scanner in){
         
         // Metodo para ingresar fichas en el mural, manualmente
         for (int i = 0; i < mat.length; i++){
@@ -231,7 +210,6 @@ public class Mural {
         }
         
         boolean continuar = true;
-        Scanner in = new Scanner(System.in);
         
         continuar = true;
         while (continuar){
