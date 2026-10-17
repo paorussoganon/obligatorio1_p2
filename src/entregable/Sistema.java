@@ -62,6 +62,15 @@ public class Sistema {
             System.out.println(listaDiseniadores.get(i));
         }
     }
+    
+    // Ultimo ID para helpers 
+    private int ultimoIDDiseniador = 0;
+    
+    public int siguienteIDDiseniador() {
+        ultimoIDDiseniador++;
+        return ultimoIDDiseniador;
+    }
+    
 
     //--------------------------------------------------------------------------
     // Para clase Mural
@@ -174,14 +183,6 @@ public class Sistema {
     
     //--------------------------------------------------------------------------
     
-    
-    // ultimo ID para helpers 
-    private int ultimoIDDiseniador = 0;
-    
-    public int siguienteIDDiseniador() {
-        ultimoIDDiseniador++;
-        return ultimoIDDiseniador;
-    }
     
 }
     

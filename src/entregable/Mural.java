@@ -191,8 +191,8 @@ public class Mural {
             int coordi = (int)(Math.random() * mat.length);
             int coordj = (int)(Math.random() * mat[0].length);
 
-            // Genero un numero aleatorio entre 1 y 7 (que son las posibles fichas)
-            int rand = (int)(Math.random() * 7);
+            // Genero un numero aleatorio entre 1 y el tamanio de la lista de fichas    
+            int rand = (int)(Math.random() * (sistema.getListaFichas().size() - 1)) + 1;
             Ficha fichaaleat = sistema.getListaFichas().get(rand);
             mat[coordi][coordj] = fichaaleat;
         }
@@ -210,59 +210,29 @@ public class Mural {
         }
         
         boolean continuar = true;
-        
-        continuar = true;
         while (continuar){
 
             // Solicito coordenadas donde quiere ubicar la ficha
             // verificando que no sean invalidas
-            System.out.println("Ingrese la coordenada (i, j) en la que desea colocar la ficha:");
+            System.out.println("Ingresar coordenadas en las que desea colocar la ficha.");
 
-            int coordi = -1;
-            boolean validai = false;
-            while (validai == false){
-                System.out.println("i - vertical (de arriba hacia abajo, entre 0 y 9): ");
-                coordi = in.nextInt();
-                in.nextLine(); // Limpio el buffer
-                validai = (coordi >= 0) && (coordi < mat.length);
-                if (validai == false){
-                    System.out.println("La coordenada i ingresada es incorrecta, inténtelo nuevamente.");
-                }
-            }
+            System.out.println("i - vertical (de arriba hacia abajo, entre 0 y 9): ");
+            int coordi = Helper.leerEnteroEnRango(in, 0, mat.length - 1);
 
-            int coordj = -1;
-            boolean validaj = false;
-            while (validaj == false){
-                System.out.println("j - horizontal (de izquierda a derecha, entre 0 y 11): ");
-                coordj = in.nextInt();
-                in.nextLine(); // Limpio el buffer
-                validaj = (coordj >= 0) && (coordj < mat[0].length);
-                if (validaj == false){
-                    System.out.println("La coordenada j ingresada es incorrecta, inténtelo nuevamente.");
-                }            
-            }
+            System.out.println("j - horizontal (de izquierda a derecha, entre 0 y 11): ");
+            int coordj = Helper.leerEnteroEnRango(in, 0, mat[0].length - 1);
 
             // Solicito que ingrese el numero de ficha,
             // chequeo que el numero sea 1 o 2 previamente
-            boolean validonum = false;
-            int numeroFicha = -1;
-            while (validonum == false){
-                System.out.println("Indique cuál ficha de las ingresadas quiere colocar: 1 ó 2?)");
-                numeroFicha = in.nextInt();
-                in.nextLine(); // Limpio el buffer
-                validonum = numeroFicha == 1 || numeroFicha == 2;
-                if (validonum == false){
-                    System.out.println("El número de ficha ingresada es incorrecto, inténtelo nuevamente.");
-                }                
-            }
+            System.out.println("Indique cuál ficha de las ingresadas quiere colocar: 1 ó 2?");
+            int numeroFicha = Helper.leerEnteroEnRango(in, 1, 2);
 
             // Busca la ficha y la inserta en la matriz en las coordenadas indicadas
-            Ficha ficha;
             if (numeroFicha == 1){
                 mat[coordi][coordj] = ficha1;
                 System.out.println("Se colocó la ficha 1 correctamente.");
             }
-            else if (numeroFicha == 2){
+            else {
                 mat[coordi][coordj] = ficha2;
                 System.out.println("Se colocó la ficha 2 correctamente.");
             }
@@ -390,7 +360,11 @@ public class Mural {
     //--------------------------------------------------------------------------    
 
     
-    
+    @Override
+    public String toString() {
+    return "Mural: " + nombre + ", diseñador: " + diseniador.getNombre()
+         + ", formato: " + nombreDelFormato(formato);
+    }
     
     
 }
