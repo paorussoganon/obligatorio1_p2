@@ -59,6 +59,33 @@ public class Sistema {
         }
     }
     
+    // Metodo: Lista de diseniadores detallada
+        
+    public void mostrarListaDiseniadoresDetallada(){
+        for (Diseniador d : ordenar()){
+            ArrayList<Mural> murales = muralesDeDiseniador(d);
+            ArrayList<Ficha> fichas = new ArrayList<>();
+            ArrayList<String> colores = new ArrayList<>();
+
+            for (Mural m : murales){
+                for (Ficha f : m.fichasUsadas()){
+                    if (!fichas.contains(f)){
+                        fichas.add(f);
+                    }
+                    if (!colores.contains(f.getColor())){
+                        colores.add(f.getColor());
+                    }
+                }
+            }
+
+            System.out.println(d);
+            System.out.println("Cantidad de murales: " + murales.size());
+            System.out.println("Fichas diferentes usadas: " + fichas.size());
+            System.out.println("Colores diferentes: " + colores.size());
+            System.out.println();
+        }
+    }
+    
     // Ultimo ID para helpers 
     private int ultimoIDDiseniador = 0;
     

@@ -206,8 +206,8 @@ public class Main {
                 }
 
                 case 7 -> {
-                    System.out.println("Ha entrado en la opción Listado de diseñadores.\n");
-                    sistema.mostrarListaDiseniadores();
+                    System.out.println("Ha entrado en la opción listado de diseñadores.\n");
+                    sistema.mostrarListaDiseniadoresDetallada();
                 }
                 
                 case 8 -> {
