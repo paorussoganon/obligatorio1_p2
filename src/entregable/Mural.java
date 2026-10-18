@@ -49,6 +49,7 @@ public class Mural {
     public Mural(String unNombre, Diseniador unDiseniador, String unFormato,
                     Ficha unaFicha0, Ficha unaFicha1, Ficha unaFicha2,
                     Sistema unSistema, Scanner in) {
+        
         this.nombre = unNombre;
         this.diseniador = unDiseniador;
         this.formato = unFormato;
@@ -184,19 +185,27 @@ public class Mural {
             }        
         }
         
-        // La cantidad de fichas aleatorias, es aleatoria
-        int cantfichas = (int)(Math.random() * 120) + 1;
-        
-        for (int k = 0; k < cantfichas; k++){
-        
-            // Las coordenadas en las que van, son aleatorias
-            int coordi = (int)(Math.random() * mat.length);
-            int coordj = (int)(Math.random() * mat[0].length);
+        // La cantidad de fichas tipo 1 y tipo 2 es aleatoria
+        int cantfichas1 = (int)(Math.random() * 120) + 1;
+        int cantfichas2 = (int)(Math.random() * 120) + 1;
 
-            // Genero un numero aleatorio entre 1 y el tamanio de la lista de fichas    
-            int rand = (int)(Math.random() * (sistema.getListaFichas().size() - 1)) + 1;
-            Ficha fichaaleat = sistema.getListaFichas().get(rand);
-            mat[coordi][coordj] = fichaaleat;
+        int coordi;
+        int coordj;
+        // Recorre la cantidad de fichas1 que tiene que colocar
+        for (int k = 0; k < cantfichas1; k++){
+            coordi = (int)(Math.random() * mat.length);
+            coordj = (int)(Math.random() * mat[0].length);
+            mat[coordi][coordj] = ficha1;
+        }
+        // Recorre la cantidad de fichas2 que tiene que colocar
+        // si está ocupada, no importa, sobreescribe.
+        // Elegimos hacerlo así, para que queden igualmente distribuidas
+        // las fichas 2, 
+        // (sino quedan muchas fichas1 y muy poquitas fichas2)
+        for (int k = 0; k < cantfichas2; k++){
+            coordi = (int)(Math.random() * mat.length);
+            coordj = (int)(Math.random() * mat[0].length);
+            mat[coordi][coordj] = ficha2;
         }
     }
     

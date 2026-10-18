@@ -57,23 +57,6 @@ public class Ficha {
         grande = unGrande;
     }
     
-    /*
-    // Metodo: para mostrar el dibujo de la ficha
-    public void mostrarFichaChica(Ficha ficha){
-        
-        for(int i = 0; i < ficha.getChico().length(); i++){
-            
-            if(ficha.getChico().charAt(i) == '.'){
-                System.out.println("/n");
-            }
-            else{
-                System.out.println(ficha.getChico().charAt(i));
-            }
-            
-        }
-    }
-    */
-    
     // validadores 
     
     public static boolean colorValido(String color) {
@@ -100,6 +83,7 @@ public class Ficha {
     }
     
 
+    
     
 
 }

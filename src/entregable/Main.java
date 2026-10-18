@@ -193,10 +193,11 @@ public class Main {
                         if (murales.isEmpty()) {
                             System.out.println("Ese diseñador no tiene murales.");
                         } else {
+                            System.out.println("Lista de murales creados por el diseñador: ");
                             for (int i = 0; i < murales.size(); i++) {
                                 System.out.println((i + 1) + " - " + murales.get(i));
                             }
-                            System.out.println("Elija un mural: ");
+                            System.out.println("Elegir un mural: ingrese el número de mural: ");
                             int num = Helper.leerEnteroEnRango(in, 1, murales.size());
                             murales.get(num - 1).imprimirChico();
                             murales.get(num - 1).imprimirGrande();

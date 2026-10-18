@@ -50,7 +50,7 @@ public class Diseniador implements Comparable<Diseniador>{
     // Para imprimir
     @Override
     public String toString(){
-        return "Diseñador: ID: " + this.IDDiseniador + ", nombre: " + this.getNombre() + ", dirección: " + this.getDireccion() + ", mail:" + this.getMail();
+        return "Diseñador: ID: " + this.IDDiseniador + ", nombre: " + this.getNombre() + ", dirección: " + this.getDireccion() + ", mail: " + this.getMail();
     }
     
     // Para reescribir el compare to
