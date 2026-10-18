@@ -138,6 +138,45 @@ public class Helper {
     
     // Helpers de mural
     
+    // Comparar mural (caso 8)
+    public static void compararSimilitudMurales(Scanner in, Sistema sistema) {
+        ArrayList<Mural> murales = sistema.getListaMurales();
+
+        if (murales.size() < 2) {
+            System.out.println("Se necesitan al menos 2 murales para comparar.");
+        } else {
+            Mural original = elegirMural(in, murales);
+            int maxFilas = original.getMat().length;
+            int maxColumnas = original.getMat()[0].length;
+
+            System.out.println("Fila inicial (1 a " + maxFilas + "): ");
+            int fila = leerEnteroEnRango(in, 1, maxFilas);
+            System.out.println("Columna inicial (1 a " + maxColumnas + "): ");
+            int columna = leerEnteroEnRango(in, 1, maxColumnas);
+
+            System.out.println("Cantidad de filas (1 a " + (maxFilas - fila + 1) + "): ");
+            int filas = leerEnteroEnRango(in, 1, maxFilas - fila + 1);
+            System.out.println("Cantidad de columnas (1 a " + (maxColumnas - columna + 1) + "): ");
+            int columnas = leerEnteroEnRango(in, 1, maxColumnas - columna + 1);
+
+            boolean hayCoincidencias = false;
+            for (Mural m : murales) {
+                if (m != original) {
+                    int[] posicion = m.buscarArea(original, fila - 1, columna - 1, filas, columnas);
+                    if (posicion != null) {
+                        hayCoincidencias = true;
+                        System.out.println(" El mural " + m.getNombre() + " del diseñador " + m.getDiseniador().getNombre() 
+                                + " coincide en: fila " + posicion[0] + " y columna " + posicion[1]);
+                    }
+                }
+            }
+
+            if (!hayCoincidencias) {
+                System.out.println("Ningún otro mural contiene esa área.");
+            }
+        }
+    }
+    
     public static Mural elegirMural(Scanner in, ArrayList<Mural> murales) {
         for (int i = 0; i < murales.size(); i++) {
             System.out.println((i + 1) + " - " + murales.get(i));

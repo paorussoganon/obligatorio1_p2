@@ -79,17 +79,11 @@ public class Mural {
             case "B" -> this.generarBorde();
             case "R" -> this.generarRandom();
             case "M" -> this.generarManual(in);
-            case "P" -> this.generarPrueba();
         }
         
     }
-    
-    //--------------------------------------------------------------------------
-    
+
     // Metodos para crear cada opcion de matriz
-    
-    //--------------------------------------------------------------------------
-    
     private void generarDamero(){
         
         // Recorro todas las posiciones ij de la matriz
@@ -268,20 +262,8 @@ public class Mural {
             }
         }
     }
-    
-    //--------------------------------------------------------------------------
-    
-    // Genero una matriz cualquiera para probar
-    private void generarPrueba(){
-        for (int i = 0; i < mat.length; i++){
-            for (int j = 0; j < mat[0].length; j++){
-                mat[i][j] = ficha1;
-            }
-        }
-    }
-    
-    //--------------------------------------------------------------------------
-    
+
+    // Caso 5
     private void guardarRespaldo(){
         for (int i = 0; i < mat.length; i++){
             for (int j = 0; j < mat[0].length; j++){
@@ -297,7 +279,6 @@ public class Mural {
         }
     }
     
-    // Helpers para opcion 5
     public void modificarPosicion(int fila, int columna, Ficha nueva){
         mat[fila][columna] = nueva;
     }
@@ -322,6 +303,31 @@ public class Mural {
                 }
             }
         }
+    }
+    
+    // Caso 8
+    private boolean coincideEn(Mural original, int fOrig, int cOrig, int filas, int columnas, int f, int c){
+        boolean coincide = true;
+        for (int i = 0; i < filas; i++){
+            for (int j = 0; j < columnas; j++){
+                if (mat[f + i][c + j] != original.mat[fOrig + i][cOrig + j]){
+                    coincide = false;
+                }
+            }
+        }
+        return coincide;
+    }
+    
+    public int[] buscarArea(Mural original, int fOrig, int cOrig, int filas, int columnas){
+        int[] posicion = null;
+        for (int f = 0; f <= mat.length - filas; f++){
+            for (int c = 0; c <= mat[0].length - columnas; c++){
+                if (posicion == null && coincideEn(original, fOrig, cOrig, filas, columnas, f, c)){
+                    posicion = new int[]{f + 1, c + 1};
+                }
+            }
+        }
+        return posicion;
     }
     
     //--------------------------------------------------------------------------

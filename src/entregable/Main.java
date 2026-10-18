@@ -210,7 +210,10 @@ public class Main {
                     sistema.mostrarListaDiseniadores();
                 }
                 
-                case 8 -> System.out.println("Ha entrado en la opción comparar similitud de murales.\n");
+                case 8 -> {
+                    System.out.println("Ha entrado en la opción comparar similitud de murales.\n");
+                    Helper.compararSimilitudMurales(in, sistema);
+                }
                 
                 case 9 -> {
                     System.out.println("Ha entrado en la opción visualizar todas las fichas.\n");
