@@ -357,24 +357,7 @@ public class Mural {
         return nombreFormato;
     }
     
-    //--------------------------------------------------------------------------
 
-    private String codigoColor(String color) {
-        String codigo = "";
-
-        switch (color) {
-            case "R" -> codigo = "\u001B[31m"; // Rojo
-            case "A" -> codigo = "\u001B[34m"; // Azul
-            case "V" -> codigo = "\u001B[32m"; // Verde
-            case "G" -> codigo = "\u001B[35m"; // Magenta
-            case "N" -> codigo = "\u001B[30m"; // Negro
-            case "B" -> codigo = "\u001B[37m"; // Blanco
-            case "M" -> codigo = "\u001B[33m"; // Amarillo
-            case "C" -> codigo = "\u001B[36m"; // Celeste Cyan
-        }
-
-        return codigo;
-    }
     
     //--------------------------------------------------------------------------
 
@@ -402,7 +385,7 @@ public class Mural {
                     String dibujo = mat[i][j].getChico();
                     int inicio = k * 3;
                     
-                    String color = codigoColor(mat[i][j].getColor());
+                    String color = mat[i][j].codigoColor();
                     String fragmento = dibujo.substring(inicio, inicio + 3).replace('.', ' ');
                     
                     System.out.print(color + fragmento + "\u001B[0m");
@@ -431,7 +414,7 @@ public class Mural {
                     String dibujo = mat[i][j].getGrande();
                     int inicio = k * 5;
                     
-                    String color = codigoColor(mat[i][j].getColor());
+                    String color = mat[i][j].codigoColor();
                     String fragmento = dibujo.substring(inicio, inicio + 5).replace('.', ' ');
                     
                     System.out.print(color + fragmento + "\u001B[0m");
