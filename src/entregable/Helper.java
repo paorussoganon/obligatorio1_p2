@@ -177,6 +177,49 @@ public class Helper {
         }
     }
     
+    // Caso 6
+    public static void visualizarMural(Scanner in, Mural mural) {
+        String formato = "";
+        boolean valido = false;
+        while (!valido) {
+            System.out.println("Formato a visualizar (C)hico o (G)rande: ");
+            formato = in.nextLine().trim().toUpperCase();
+            valido = formato.equals("C") || formato.equals("G");
+            if (!valido) {
+                System.out.println("Opción inválida.");
+            }
+        }
+
+        boolean salir = false;
+        while (!salir) {
+            if (formato.equals("C")) {
+                mural.imprimirChico();
+            } else {
+                mural.imprimirGrande();
+            }
+
+            String entrada = "";
+            boolean entradaValida = false;
+            while (!entradaValida) {
+                System.out.println("ENTER para alternar el tamaño o S para salir: ");
+                entrada = in.nextLine().trim();
+                entradaValida = entrada.isEmpty() || entrada.equalsIgnoreCase("S");
+                if (!entradaValida) {
+                    System.out.println("Opción inválida.");
+                }
+            }
+
+            if (entrada.equalsIgnoreCase("S")) {
+                salir = true;
+            } else if (formato.equals("C")) {
+                formato = "G";
+            } else {
+                formato = "C";
+            }
+        }
+    }
+    
+    // Caso 5
     public static Mural elegirMural(Scanner in, ArrayList<Mural> murales) {
         for (int i = 0; i < murales.size(); i++) {
             System.out.println((i + 1) + " - " + murales.get(i));
