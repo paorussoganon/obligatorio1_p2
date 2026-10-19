@@ -174,7 +174,6 @@ public class Main {
                         mural.imprimirChico();
                         mural.imprimirGrande();
                     }
-                    
 
                 }
                 
@@ -211,6 +210,7 @@ public class Main {
                             System.out.println("Elegir un mural: ingrese el número de mural: ");
                             int num = Helper.leerEnteroEnRango(in, 1, murales.size());
                             Helper.visualizarMural(in, murales.get(num - 1));
+                        
                         }
                     }
                 }

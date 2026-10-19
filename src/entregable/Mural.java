@@ -70,7 +70,6 @@ public class Mural {
         this.ficha2 = unaFicha2;
         this.sistema = unSistema;
         
-        
         // Creo matriz de 10 filas x 12 columnas
         this.mat = new Ficha[10][12];
         this.matRespaldo = new Ficha[10][12];
@@ -283,6 +282,7 @@ public class Mural {
             }
         }
     }
+    
     public void restaurar(){
         for (int i = 0; i < mat.length; i++){
             for (int j = 0; j < mat[0].length; j++){
