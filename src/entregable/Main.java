@@ -199,8 +199,7 @@ public class Main {
                             }
                             System.out.println("Elegir un mural: ingrese el número de mural: ");
                             int num = Helper.leerEnteroEnRango(in, 1, murales.size());
-                            murales.get(num - 1).imprimirChico();
-                            murales.get(num - 1).imprimirGrande();
+                            Helper.visualizarMural(in, murales.get(num - 1));
                         }
                     }
                 }

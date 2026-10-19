@@ -354,10 +354,10 @@ public class Mural {
             case "R" -> codigo = "\u001B[31m"; // Rojo
             case "A" -> codigo = "\u001B[34m"; // Azul
             case "V" -> codigo = "\u001B[32m"; // Verde
-            case "M" -> codigo = "\u001B[35m"; // Magenta
+            case "G" -> codigo = "\u001B[35m"; // Magenta
             case "N" -> codigo = "\u001B[30m"; // Negro
             case "B" -> codigo = "\u001B[37m"; // Blanco
-            case "G" -> codigo = "\u001B[33m"; // Amarillo
+            case "M" -> codigo = "\u001B[33m"; // Amarillo
             case "C" -> codigo = "\u001B[36m"; // Celeste Cyan
         }
 
