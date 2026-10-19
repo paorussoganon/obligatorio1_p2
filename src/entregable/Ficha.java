@@ -1,4 +1,16 @@
 
+/*
+Información de autores:
+
+Integrante 1: 
+Nombre: Salvador Fernandez
+Número: 262807
+
+Integrante 2:
+Nombre: Paola Russo
+Número: 225129
+*/
+
 package entregable;
 
 public class Ficha {
